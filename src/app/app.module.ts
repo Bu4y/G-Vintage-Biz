@@ -1,3 +1,4 @@
+import { RegisterPage } from './../pages/register/register';
 import { HomePage } from './../pages/home/home';
 import { LoginPage } from './../pages/login/login';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -14,6 +15,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from "@angular/http";
 
+import { EcommerceCoreModule} from "@ngcommerce/core";
+
 @NgModule({
   declarations: [
     MyApp,
@@ -21,12 +24,14 @@ import { HttpModule } from "@angular/http";
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    EcommerceCoreModule.forRoot('https://greenvintage-v2.herokuapp.com/api/')
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,7 +40,8 @@ import { HttpModule } from "@angular/http";
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

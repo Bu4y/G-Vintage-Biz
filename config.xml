@@ -86,8 +86,8 @@
     <plugin name="onesignal-cordova-plugin" spec="^2.2.1" />
     <allow-navigation href="http://192.168.0.116:8100" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
-        <variable name="APP_ID" value="356554498132287" />
-        <variable name="APP_NAME" value="G-test" />
+        <variable name="APP_ID" value="119811615358348" />
+        <variable name="APP_NAME" value="G-Vintage-Biz" />
     </plugin>
     <engine name="android" spec="~6.2.3" />
 </widget>

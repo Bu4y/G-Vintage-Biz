@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthenService, SignupModel  } from "@ngcommerce/core";
 
 /**
  * Generated class for the RegisterPage page.
@@ -15,11 +16,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RegisterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user:any= {};
+  constructor(public navCtrl: NavController, public navParams: NavParams, public service : AuthenService) {
+   this.user =  this.navParams.data; 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
+  }
+
+  register(){
+    let newUser = this.user;
+    newUser.firstName = this.user.first_name;
+    newUser.lastName = this.user.last_name;
+
+    alert(JSON.stringify(newUser));
+    
+    this.service.signUp(newUser).then(data=>{
+     // alert(JSON.stringify(data));
+      this.navCtrl.pop();
+    }).catch(e=>{
+      alert("<pre>"+JSON.stringify(e));
+    });
+
+
   }
 
 }
