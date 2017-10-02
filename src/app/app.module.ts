@@ -1,3 +1,7 @@
+import { NotificationPage } from '../pages/notification/notification';
+import { ProductPage } from '../pages/product/product';
+import { OrderPage } from '../pages/order/order';
+import { AccountPage } from '../pages/account/account';
 import { RegisterPage } from './../pages/register/register';
 import { HomePage } from './../pages/home/home';
 import { LoginPage } from './../pages/login/login';
@@ -25,7 +29,11 @@ import { EcommerceCoreModule} from "@ngcommerce/core";
     HomePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    AccountPage,
+    OrderPage,
+    ProductPage,
+    NotificationPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +49,11 @@ import { EcommerceCoreModule} from "@ngcommerce/core";
     HomePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    AccountPage,
+    OrderPage,
+    ProductPage,
+    NotificationPage
   ],
   providers: [
     StatusBar,
