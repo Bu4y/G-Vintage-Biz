@@ -1,3 +1,4 @@
+import { TabsPage } from '../tabs/tabs';
 import { HomePage } from './../home/home';
 import { RegisterPage } from './../register/register';
 import { Component } from '@angular/core';
@@ -31,7 +32,7 @@ export class LoginPage {
 
   login() {
     this.authenService.signIn(this.credential).then(data => {
-      this.navCtrl.push(HomePage);
+      this.navCtrl.push(TabsPage);
 
      // alert(JSON.stringify(data));
     }).catch(e => {
