@@ -1,3 +1,4 @@
+import { OneSignal } from '@ionic-native/onesignal';
 import { NotificationPage } from '../pages/notification/notification';
 import { ProductPage } from '../pages/product/product';
 import { OrderPage } from '../pages/order/order';
@@ -59,6 +60,7 @@ import { EcommerceCoreModule} from "@ngcommerce/core";
     StatusBar,
     Facebook,
     SplashScreen,
+    OneSignal,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
