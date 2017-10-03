@@ -1,6 +1,6 @@
+import { AuthenService } from '@ngcommerce/core';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 /**
  * Generated class for the AccountPage page.
  *
@@ -14,12 +14,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'account.html',
 })
 export class AccountPage {
-
+  user: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountPage');
   }
 
+  logout(){
+    window.localStorage.removeItem('jjuserbuyer');
+    this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));    
+  }
 }

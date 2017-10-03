@@ -20,7 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from "@angular/http";
 
-import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent } from "@ngcommerce/core";
+import { EcommerceCoreModule, IonSegmentOrderComponent,IonFormProfileComponent, IonListOrderComponent, IonOrdersComponent } from "@ngcommerce/core";
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, I
     NotificationPage,
     IonListOrderComponent,
     IonSegmentOrderComponent,
-    IonOrdersComponent
+    IonOrdersComponent,
+    IonFormProfileComponent
   ],
   imports: [
     BrowserModule,
