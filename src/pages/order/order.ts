@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CorService, OrderModel, OrderService, ItemByOrderByShopModel } from "@ngcommerce/core";
+import { OrderDetailPage } from '../order-detail/order-detail';
 
 /**
  * Generated class for the OrderPage page.
@@ -55,7 +56,7 @@ export class OrderPage {
 
   selectedItem(e) {
     console.log(e);
-    // this.navCtrl.push(OrderDetailPage, { item: e });
+    this.navCtrl.push(OrderDetailPage, e);
     // alert(e);
   }
 }

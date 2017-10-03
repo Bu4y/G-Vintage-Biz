@@ -19,9 +19,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from "@angular/http";
-
-import { EcommerceCoreModule, IonSegmentOrderComponent,IonFormProfileComponent, IonListOrderComponent, IonOrdersComponent } from "@ngcommerce/core";
-
+import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent,IonDetailOrderComponent,IonFormProfileComponent } from "@ngcommerce/core";
+import { Ionic2RatingModule } from 'ionic2-rating'
+import { OrderDetailPage } from '../pages/order-detail/order-detail';
 @NgModule({
   declarations: [
     MyApp,
@@ -34,15 +34,19 @@ import { EcommerceCoreModule, IonSegmentOrderComponent,IonFormProfileComponent, 
     AccountPage,
     OrderPage,
     ProductPage,
+    OrderDetailPage,
     NotificationPage,
     IonListOrderComponent,
     IonSegmentOrderComponent,
     IonOrdersComponent,
-    IonFormProfileComponent
+    IonFormProfileComponent,
+    IonDetailOrderComponent
+    
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    Ionic2RatingModule,
     IonicModule.forRoot(MyApp),
     EcommerceCoreModule.forRoot('https://greenvintage-v2.herokuapp.com/api/')
   ],
@@ -58,7 +62,8 @@ import { EcommerceCoreModule, IonSegmentOrderComponent,IonFormProfileComponent, 
     AccountPage,
     OrderPage,
     ProductPage,
-    NotificationPage
+    NotificationPage,
+    OrderDetailPage
   ],
   providers: [
     StatusBar,
