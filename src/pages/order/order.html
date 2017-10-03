@@ -13,6 +13,8 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-orders [steps]="steps" [channel]="channel">
+    <ion-segment-order *ngIf="order && order.waiting" [items]="order" (SelectedOrder)="selectedItem($event)"></ion-segment-order>
+  </ion-orders>
 </ion-content>

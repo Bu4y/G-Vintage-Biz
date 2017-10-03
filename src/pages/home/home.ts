@@ -10,7 +10,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private oneSignal: OneSignal, public platform: Platform) {
     if (this.platform.is('cordova')) {
-      this.initOnesignal();
+      // this.initOnesignal();
     }
 
   }
