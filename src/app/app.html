@@ -5,7 +5,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-item *ngFor="let item of shopList" (click)="selectShop(item)">
+      <ion-item *ngFor="let item of shopList" (click)="selectShop(item)" menuClose>
         <ion-avatar item-left>
           <img [src]="item.image">
         </ion-avatar>

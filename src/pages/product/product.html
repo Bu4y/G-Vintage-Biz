@@ -19,5 +19,10 @@
 
 
 <ion-content>
-<ion-list-product [items]="product.items" (selectedProduct)="selected($event)" ></ion-list-product>
+  <ion-list-product [items]="product.items" (selectedProduct)="selected($event)"></ion-list-product>
+
+  <ion-fab bottom right>
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
 </ion-content>
