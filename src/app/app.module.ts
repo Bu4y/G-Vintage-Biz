@@ -1,3 +1,4 @@
+
 import { OneSignal } from '@ionic-native/onesignal';
 import { NotificationPage } from '../pages/notification/notification';
 import { ProductPage } from '../pages/product/product';
@@ -19,10 +20,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from "@angular/http";
-import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonDetailProductComponent } from "@ngcommerce/core";
+import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonDetailProductComponent,IonFormProductComponent } from "@ngcommerce/core";
 import { Ionic2RatingModule } from 'ionic2-rating'
 import { OrderDetailPage } from '../pages/order-detail/order-detail';
 import { ProductDetailPage } from './../pages/product-detail/product-detail';
+import { CreatProductPage } from '../pages/creat-product/creat-product';
 @NgModule({
   declarations: [
     MyApp,
@@ -38,13 +40,15 @@ import { ProductDetailPage } from './../pages/product-detail/product-detail';
     OrderDetailPage,
     ProductDetailPage,
     NotificationPage,
+    CreatProductPage,
     IonListOrderComponent,
     IonSegmentOrderComponent,
     IonOrdersComponent,
     IonFormProfileComponent,
     IonDetailOrderComponent,
     IonListProductComponent,
-    IonDetailProductComponent
+    IonDetailProductComponent,
+    IonFormProductComponent
     
   ],
   imports: [
@@ -68,7 +72,8 @@ import { ProductDetailPage } from './../pages/product-detail/product-detail';
     ProductPage,
     NotificationPage,
     OrderDetailPage,
-    ProductDetailPage
+    ProductDetailPage,
+    CreatProductPage
   ],
   providers: [
     StatusBar,
