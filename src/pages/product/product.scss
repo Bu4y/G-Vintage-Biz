@@ -1,3 +1,32 @@
 page-product {
 
+    ul {
+        padding: 0px;
+        margin-top:0px;
+        &.rating li {
+            padding: 0px 0px !important;
+            background: none;
+            color: #ffb400;
+            ion-icon {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .item-ios h2 {
+        margin: 0 0 2px;
+        font-size: 1.9rem;
+        font-weight: normal;
+        color: #ff00f5;
+      }
+
+      .item-ios p {
+        overflow: inherit;
+        font-size: 1.4rem;
+        line-height: normal;
+        text-overflow: inherit;
+        color: #f53d3d;
+        margin: 0 0 2px;
+      }
+      
 }

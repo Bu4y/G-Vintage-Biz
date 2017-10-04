@@ -1,3 +1,73 @@
 page-order-detail {
 
+    
+    #pName {
+     
+          font-size: 2rem;
+          line-height: normal;
+          color: #FA00BB;
+          margin: 0 0 2px;
+        //   white-space: nowrap;
+        //   width: 12em;
+        //   overflow: hidden;
+        //   text-overflow: ellipsis;
+        
+    }
+
+    ul {
+        padding: 0px;
+        margin-top:0px;
+        &.rating li {
+            padding: 0px 0px !important;
+            background: none;
+            color: #ffb400;
+            ion-icon {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .item-ios h3,
+    .item-ios h4,
+    .item-ios h5,
+    .item-ios h6 {
+      margin: 0 0 3px;
+      font-size: 1.8rem;
+      font-weight: normal;
+      line-height: normal;
+      background-color: #eae8e8;
+    }
+
+    ion-icon {
+        display: inline-block;
+        font-size: 1.5em;
+        padding-right: 12px;
+       
+    }
+
+    h4 {
+        font-size: 2rem;
+        color: #ff0000;
+      }
+
+      
+      
+
+    #delName{
+        color: #000000;
+        font-size: 1.6rem;
+    }
+
+    #delDetail{
+        color: #000;
+        font-size: 1.6rem;
+    }
+
+    #delPrice{
+        color: #000;
+        font-size: 1.6rem;
+    }
+
+    
+
 }
