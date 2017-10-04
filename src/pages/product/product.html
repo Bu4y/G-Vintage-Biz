@@ -8,11 +8,21 @@
 
   <ion-navbar>
     <ion-title>product</ion-title>
+    <ion-buttons start>
+      <button ion-button menuToggle icon-only>
+        <ion-icon name="md-list"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-<ion-list-product [items]="product.items" (selectedProduct)="selected($event)" (item)="addProductModal($event)" ></ion-list-product>
+  <ion-list-product [items]="product.items" (selectedProduct)="selected($event)"></ion-list-product>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="addProductModal()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
 </ion-content>
