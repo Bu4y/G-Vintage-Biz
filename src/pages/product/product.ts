@@ -1,7 +1,7 @@
 import { CreatProductPage } from '../creat-product/creat-product';
 import { ProductDetailPage } from './../product-detail/product-detail';
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, MenuController, ModalController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController, ModalController } from 'ionic-angular';
 import { CorService, ProductListModel, ProductService, ShopModel } from "@ngcommerce/core";
 
 /**
@@ -29,13 +29,14 @@ export class ProductPage {
     public productService: ProductService,
     public menuController: MenuController,
     public alertCtrl: AlertController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public loadingCtrl: LoadingController
   ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductPage');
-    
+
     this.shop = JSON.parse(window.localStorage.getItem('shop'));
     if (this.shop && this.shop._id) {
       this.getProduct(this.shop);
@@ -49,35 +50,28 @@ export class ProductPage {
     if (leftMenu) {
       leftMenu.ionClose.subscribe(() => {
         this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        if (this.shop._id !== JSON.parse(this.shopSelected)._id) {
-          this.getProduct(this.shop);
-          this.shopSelected = JSON.stringify(this.shop);
-
-          let alert = this.alertCtrl.create({
-            title: 'Load product complete',
-            buttons: [
-              {
-                text: 'OK',
-                handler: () => {
-                  console.log('Loadding complete');
-                }
-              }
-            ]
-          });
-          alert.present();
-
+        let shopSelected = JSON.parse(this.shopSelected);
+        if (shopSelected) {
+          if (this.shop._id === shopSelected._id) {
+            return;
+          }
         }
+        this.getProduct(this.shop);
+        this.shopSelected = JSON.stringify(this.shop);
       });
     }
   }
 
   getProduct(shop) {
     this.product = {} as ProductListModel;
+    let loading = this.loadingCtrl.create();
+    loading.present();
     this.productService.getProductListByShop(shop._id).then(data => {
       console.log(data);
       this.product = data;
-      var component = this.navCtrl.getActive().instance;
+      loading.dismiss();
     }).catch(e => {
+      loading.dismiss();
       console.log(e);
     })
   }
@@ -85,10 +79,19 @@ export class ProductPage {
   selected(items) {
     this.navCtrl.push(ProductDetailPage, items);
   }
-  addProductModal(){
+  addProductModal() {
     let productModal = this.modalCtrl.create(CreatProductPage);
     productModal.onDidDismiss(data => {
-      console.log(data);
+      if (data && data.name && data.name !== undefined) {
+        let loading = this.loadingCtrl.create();
+        loading.present();
+        this.productService.createProduct(data).then((resq) => {
+          this.getProduct(this.shop);
+        }, (err) => {
+          loading.dismiss();
+          console.log(err);
+        });
+      }
     });
     productModal.present();
   }

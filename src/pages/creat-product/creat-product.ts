@@ -1,5 +1,6 @@
+import { ShopService, ShopListModel, CategoryService, CategoryModel, ShippingService, ShippingModel } from '@ngcommerce/core';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the CreatProductPage page.
@@ -15,11 +16,72 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CreatProductPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  shops = {} as ShopListModel;
+  categories: Array<CategoryModel>;
+  shippings: Array<ShippingModel>;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public shopService: ShopService,
+    public categoryService: CategoryService,
+    public shippingService: ShippingService,
+    public loadingCtrl: LoadingController,
+    public viewCtrl: ViewController
+  ) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreatProductPage');
+    this.loadShops();
+  }
+  loadShops() {
+    let loading = this.loadingCtrl.create();
+    loading.present();
+    this.shopService.getShopList().then((data) => {
+      this.shops = data;
+      loading.dismiss();                  
+      this.loadCate();
+    }, (err) => {
+      loading.dismiss();      
+      console.log(err);
+    });
+  }
+
+  loadCate() {
+    let loading = this.loadingCtrl.create();
+    loading.present();
+    this.categoryService.getCategoryList().then((data) => {
+      this.categories = data;
+      loading.dismiss();                  
+      this.loadShipping();
+    }, (err) => {
+      loading.dismiss();            
+      console.log(err);
+    });
+  }
+
+  loadShipping() {
+    let loading = this.loadingCtrl.create();    
+    loading.present();    
+    this.shippingService.getShippingList().then((data) => {
+      this.shippings = data;
+      loading.dismiss();            
+    }, (err) => {
+      loading.dismiss();            
+      console.log(err);
+    });
+  }
+
+  createProduct(e){
+    if(e.image && e.image !== undefined){
+      e = e ? e : {};
+      e.images = e.images ? e.images : [];
+      e.images.push(e.image);
+    }
+    this.viewCtrl.dismiss(e);
+    // console.log(e);
   }
 
 }
