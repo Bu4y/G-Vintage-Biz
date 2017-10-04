@@ -19,9 +19,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from "@angular/http";
-import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent,IonDetailOrderComponent,IonFormProfileComponent } from "@ngcommerce/core";
+import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonDetailProductComponent } from "@ngcommerce/core";
 import { Ionic2RatingModule } from 'ionic2-rating'
 import { OrderDetailPage } from '../pages/order-detail/order-detail';
+import { ProductDetailPage } from './../pages/product-detail/product-detail';
 @NgModule({
   declarations: [
     MyApp,
@@ -35,12 +36,15 @@ import { OrderDetailPage } from '../pages/order-detail/order-detail';
     OrderPage,
     ProductPage,
     OrderDetailPage,
+    ProductDetailPage,
     NotificationPage,
     IonListOrderComponent,
     IonSegmentOrderComponent,
     IonOrdersComponent,
     IonFormProfileComponent,
-    IonDetailOrderComponent
+    IonDetailOrderComponent,
+    IonListProductComponent,
+    IonDetailProductComponent
     
   ],
   imports: [
@@ -63,7 +67,8 @@ import { OrderDetailPage } from '../pages/order-detail/order-detail';
     OrderPage,
     ProductPage,
     NotificationPage,
-    OrderDetailPage
+    OrderDetailPage,
+    ProductDetailPage
   ],
   providers: [
     StatusBar,
