@@ -1,6 +1,6 @@
 import { LoginPage } from '../pages/login/login';
 import { Component } from '@angular/core';
-import { Platform, MenuController } from 'ionic-angular';
+import { Platform, MenuController, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ShopService, UserModel } from '@ngcommerce/core';
@@ -18,7 +18,8 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    public menuController: MenuController
+    public menuController: MenuController,
+    public loadingCtrl: LoadingController
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -37,12 +38,17 @@ export class MyApp {
     this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
 
     if (this.user) {
+      let loading = this.loadingCtrl.create();
+      loading.present();
       this.shopService.getShopListByUser().then(data => {
         this.shopList = data;
+        loading.dismiss();
       }).catch(err => {
         window.localStorage.removeItem('jjuserbuyer');
         window.localStorage.removeItem('shop');
         this.rootPage = LoginPage;
+        loading.dismiss();
+        
       });
     }
   }
@@ -63,6 +69,11 @@ export class MyApp {
         });
       }
     }, 1000);
+  }
+
+  isShow(id){
+    let shopId = window.localStorage.getItem('shop') ? JSON.parse(window.localStorage.getItem('shop'))._id : null;
+    return shopId === id;
   }
 
 }
