@@ -1,1 +1,17 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>ร้านค้าของคุณ</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-item *ngFor="let item of shopList" (click)="selectShop(item)">
+        <ion-avatar item-left>
+          <img [src]="item.image">
+        </ion-avatar>
+        <h2>{{item.name}}</h2>
+      </ion-item>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
