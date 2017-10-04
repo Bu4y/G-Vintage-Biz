@@ -1,28 +1,17 @@
 import { OneSignal } from '@ionic-native/onesignal';
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
-import { ShopService } from "@ngcommerce/core";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  private shopList: Array<any> = [];
 
-  constructor(public shopService: ShopService, public navCtrl: NavController, private oneSignal: OneSignal, public platform: Platform) {
+  constructor(public navCtrl: NavController, private oneSignal: OneSignal, public platform: Platform) {
     if (this.platform.is('cordova')) {
       // this.initOnesignal();
     }
-    this.initLoadStoreList();
-  }
-
-  initLoadStoreList() {
-    this.shopService.getShopListByUser().then(data => {
-      this.shopList = data;
-    }).catch(err => {
-
-    });
   }
 
   initOnesignal() {
