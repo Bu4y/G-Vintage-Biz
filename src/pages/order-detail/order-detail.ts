@@ -19,7 +19,7 @@ export class OrderDetailPage {
     this.items = this.navParams.data;
     console.log(this.items);
   }
-
+ 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderDetailPage');
   }
