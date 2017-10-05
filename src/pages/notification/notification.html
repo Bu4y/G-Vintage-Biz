@@ -18,6 +18,11 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let noti of notifications">
+      <h3>{{ noti.message }}</h3>
+      <p>{{ noti.date | date: 'dd MMMM yyyy HH:mm:ss a'}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

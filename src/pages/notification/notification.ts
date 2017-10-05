@@ -14,12 +14,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'notification.html',
 })
 export class NotificationPage {
-
+  notifications: Array<any> = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NotificationPage');
+  ionViewWillEnter() {
+    this.notifications = JSON.parse(window.localStorage.getItem('onNotifications'));
   }
 
 }

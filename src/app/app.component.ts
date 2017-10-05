@@ -42,8 +42,16 @@ export class MyApp {
 
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
 
-    this.oneSignal.handleNotificationReceived().subscribe(() => {
+    this.oneSignal.handleNotificationReceived().subscribe((onReceived) => {
       // do something when notification is received
+      let notifications = window.localStorage.getItem('sellerNotification') ? JSON.parse(window.localStorage.getItem('sellerNotification')) : [];
+
+      notifications.unshift({
+        date: new Date(),
+        message: onReceived.payload.body
+      });
+
+      window.localStorage.setItem('sellerNotification', JSON.stringify(notifications));
     });
 
     this.oneSignal.handleNotificationOpened().subscribe(() => {
