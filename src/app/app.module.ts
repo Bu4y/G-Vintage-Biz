@@ -1,3 +1,4 @@
+import { CreateshopPage } from '../pages/createshop/createshop';
 import { OneSignal } from '@ionic-native/onesignal';
 import { NotificationPage } from '../pages/notification/notification';
 import { ProductPage } from '../pages/product/product';
@@ -42,6 +43,7 @@ import { ListshopPage } from '../pages/listshop/listshop';
     NotificationPage,
     CreatProductPage,
     ListshopPage,
+    CreateshopPage,
     IonListOrderComponent,
     IonSegmentOrderComponent,
     IonOrdersComponent,
@@ -77,7 +79,8 @@ import { ListshopPage } from '../pages/listshop/listshop';
     OrderDetailPage,
     ProductDetailPage,
     CreatProductPage,
-    ListshopPage
+    ListshopPage,
+    CreateshopPage
   ],
   providers: [
     StatusBar,

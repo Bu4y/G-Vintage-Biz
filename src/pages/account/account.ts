@@ -1,3 +1,4 @@
+import { ListshopPage } from '../listshop/listshop';
 import { AuthenService } from '@ngcommerce/core';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -26,5 +27,8 @@ export class AccountPage {
   logout(){
     window.localStorage.removeItem('jjuserbuyer');
     this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));    
+  }
+  createshop(e){
+    this.navCtrl.push(ListshopPage);
   }
 }
