@@ -36,6 +36,14 @@ export class ListshopPage {
   createShopModal(){
   let shopModal = this.modalControl.create(CreateshopPage);
   shopModal.onDidDismiss(data =>{
+    if(data && data.name){
+      this.shopService.createShop(data)
+      .then((resp)=>{
+        this.getShop();        
+      },(err)=>{
+        console.log(err);
+      });
+    }
 
   });
   shopModal.present();
