@@ -1,8 +1,8 @@
 page-order {
    
      .segment-button {
-        color: black;
-        background-color: #488aff;
+        color: black !important;
+        background-color: #488aff !important;
         border-radius: 16px;
        
     }
@@ -12,21 +12,21 @@ page-order {
         margin-left: 0;
         border-left-width: 0;
         border-radius: 16px;
-        border-color: #427feb;
+        border-color: #427feb !important;
         border-left-width: 1px;
       }
       
 
     .segment-ios-light .segment-button.segment-activated {
-        color: #f4f4f4;
-        background-color: #488aff;
+        color: #f4f4f4 !important;
+        background-color: #488aff !important;
         border-left-width: 1px;
         border-radius: 16px;
       }
 
       .segment-ios-light .segment-button {
         border-color: rgba(158, 158, 158, 0.1);
-        color: #222;
+        color: #222 !important;
       }
 
       img {

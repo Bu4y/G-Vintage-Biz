@@ -1,4 +1,3 @@
-
 import { OneSignal } from '@ionic-native/onesignal';
 import { NotificationPage } from '../pages/notification/notification';
 import { ProductPage } from '../pages/product/product';
@@ -20,11 +19,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from "@angular/http";
-import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonDetailProductComponent,IonFormProductComponent } from "@ngcommerce/core";
+import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonDetailProductComponent,IonFormProductComponent,IonListShopComponent,IonFormShopComponent } from "@ngcommerce/core";
 import { Ionic2RatingModule } from 'ionic2-rating'
 import { OrderDetailPage } from '../pages/order-detail/order-detail';
 import { ProductDetailPage } from './../pages/product-detail/product-detail';
 import { CreatProductPage } from '../pages/creat-product/creat-product';
+import { ListshopPage } from '../pages/listshop/listshop';
 @NgModule({
   declarations: [
     MyApp,
@@ -41,6 +41,7 @@ import { CreatProductPage } from '../pages/creat-product/creat-product';
     ProductDetailPage,
     NotificationPage,
     CreatProductPage,
+    ListshopPage,
     IonListOrderComponent,
     IonSegmentOrderComponent,
     IonOrdersComponent,
@@ -48,7 +49,9 @@ import { CreatProductPage } from '../pages/creat-product/creat-product';
     IonDetailOrderComponent,
     IonListProductComponent,
     IonDetailProductComponent,
-    IonFormProductComponent
+    IonFormProductComponent,
+    IonListShopComponent,
+    IonFormShopComponent
     
   ],
   imports: [
@@ -73,7 +76,8 @@ import { CreatProductPage } from '../pages/creat-product/creat-product';
     NotificationPage,
     OrderDetailPage,
     ProductDetailPage,
-    CreatProductPage
+    CreatProductPage,
+    ListshopPage
   ],
   providers: [
     StatusBar,
