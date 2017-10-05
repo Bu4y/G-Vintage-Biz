@@ -86,6 +86,7 @@ export class ProductPage {
         let loading = this.loadingCtrl.create();
         loading.present();
         this.productService.createProduct(data).then((resq) => {
+          loading.dismiss();          
           this.getProduct(this.shop);
         }, (err) => {
           loading.dismiss();
