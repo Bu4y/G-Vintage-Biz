@@ -20,7 +20,7 @@ export class NotificationPage {
 
   ionViewWillEnter() {
     this.notifications = JSON.parse(window.localStorage.getItem('sellerNotification'));
-    alert(this.notifications);
+    // alert(this.notifications);
   }
 
 }
