@@ -20,17 +20,17 @@ export class ListshopPage {
 
   constructor(public navCtrl: NavController,
    public navParams: NavParams,public shopService:ShopService,public modalControl : ModalController ) {
+     this.getShop();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListshopPage');
-
-
+    
   }
-  createShop(shop){
+  getShop(){
     this.shopService.getShopListByUser().then(data =>{
       console.log(data);
-    })
+    });
   }
 
 }

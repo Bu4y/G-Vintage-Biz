@@ -16,8 +16,6 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content>
-  <ion-form-profile [item]="user" (itemClicked)="logout($event)" (itemClicked)="createshop($event)"></ion-form-profile>
+  <ion-form-profile [item]="user" (itemClicked)="logout($event)" (click)="createshop($event)"></ion-form-profile>
 </ion-content>
