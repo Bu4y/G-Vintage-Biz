@@ -27,6 +27,7 @@
         "@ionic-native/status-bar": "3.12.1",
         "@ionic/storage": "2.0.1",
         "@ngcommerce/core": "^1.0.75",
+        "chart.js": "^2.6.0",
         "cordova-android": "^6.2.3",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-facebook4": "^1.9.1",
