@@ -51,16 +51,10 @@ export class HomePage {
             data: [this.percentWaiting, this.percentAccept, this.percentSent, this.percentReturn],
             // data: [this.percentWaiting, this.percentAccept, this.percentSent, this.percentReturn],
             backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)'
-            ],
-            hoverBackgroundColor: [
-              "#FF6384",
-              "#36A2EB",
+              "#D8625D",
+              "#5C926E",
               "#FFCE56",
-              "#FF6384"
+              "#36A2EB"
             ]
           }]
         }, legend: {
