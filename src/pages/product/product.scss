@@ -20,6 +20,21 @@ page-product {
         color: #7f3f00;
       }
 
+      .item-md h2 {
+        margin: 2px 0;
+        font-size: 1.6rem;
+        font-weight: normal;
+        color: #7f3f00;
+      }
+      .item-md p {
+        margin: 0 0 2px;
+        overflow: inherit;
+        font-size: 1.4rem;
+        line-height: normal;
+        text-overflow: inherit;
+        color: #d8625d;
+      }      
+
       .item-ios p {
         overflow: inherit;
         font-size: 1.4rem;
