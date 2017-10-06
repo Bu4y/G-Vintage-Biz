@@ -2,20 +2,10 @@ page-order {
    
      .segment-button {
         color: black !important;
-        background-color: #488aff !important;
-        border-radius: 16px;
+       
        
     }
 
-    .segment-ios .segment-button:last-of-type {
-       
-        margin-left: 0;
-        border-left-width: 0;
-        border-radius: 16px;
-        border-color: #427feb !important;
-        border-left-width: 1px;
-      }
-      
 
     .segment-ios-light .segment-button.segment-activated {
         color: #f4f4f4 !important;
