@@ -51,7 +51,6 @@ export class TabsPage {
         this.shopService.createShop(data)
           .then((resp) => {
             loading.dismiss();
-            this.getShop();
           }, (err) => {
             loading.dismiss();
             console.log(err);

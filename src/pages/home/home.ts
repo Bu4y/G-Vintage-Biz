@@ -101,6 +101,8 @@ export class HomePage {
       });
       loading.dismiss();
 
+    },err=>{
+      loading.dismiss();
     })
   }
 
