@@ -18,6 +18,6 @@
 </ion-content>
 
 <ion-footer>
-  <button ion-button block *ngIf="items.status !== 'return'" (click)="updateStatus(items)">{{items.status === 'waiting' ? 'Accept' : items.status === 'accept' ? 'Sent': items.status === 'sent' ? 'Complete':'Return'}}</button>
-  <button ion-button block color="danger" *ngIf="items.status === 'waiting'" (click)="updateStatusReject(items)">Reject</button>
+  <button ion-button block id="btnStatus" *ngIf="items.status !== 'return'" (click)="updateStatus(items)">{{items.status === 'waiting' ? 'Accept' : items.status === 'accept' ? 'Sent': items.status === 'sent' ? 'Complete':'Return'}}</button>
+  <button ion-button block id="btnReject" *ngIf="items.status === 'waiting'" (click)="updateStatusReject(items)">Reject</button>
 </ion-footer>
