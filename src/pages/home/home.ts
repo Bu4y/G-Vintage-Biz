@@ -51,10 +51,10 @@ export class HomePage {
             data: [this.percentWaiting, this.percentAccept, this.percentSent, this.percentReturn],
             // data: [this.percentWaiting, this.percentAccept, this.percentSent, this.percentReturn],
             backgroundColor: [
-              "#FF6384",
-              "#36A2EB",
+              "#D8625D",
+              "#5C926E",
               "#FFCE56",
-              "#4BC0C0"
+              "#36A2EB"
             ]
           }]
         }, legend: {
