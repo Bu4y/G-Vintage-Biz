@@ -1,7 +1,7 @@
 import { CreateshopPage } from '../createshop/createshop';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
-import { ShopService,ShopModel,ShopListModel} from '@ngcommerce/core';
+import { IonicPage, LoadingController, ModalController, NavController, NavParams } from 'ionic-angular';
+import { ShopService, ShopModel, ShopListModel } from '@ngcommerce/core';
 
 
 /**
@@ -20,33 +20,37 @@ export class ListshopPage {
   shop = {} as ShopListModel;
 
   constructor(public navCtrl: NavController,
-   public navParams: NavParams,public shopService:ShopService,public modalControl : ModalController ) {
-     this.getShop();
+    public navParams: NavParams, public shopService: ShopService, public modalControl: ModalController,public loadingCtrl: LoadingController) {
+   
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad ListshopPage');
-    
+    this.getShop();
   }
-  getShop(){
-    this.shopService.getShopListByUser().then(data =>{
+  getShop() {
+    this.shopService.getShopListByUser().then(data => {
       this.shop.items = data;
     });
   }
-  createShopModal(){
-  let shopModal = this.modalControl.create(CreateshopPage);
-  shopModal.onDidDismiss(data =>{
-    if(data && data.name){
-      this.shopService.createShop(data)
-      .then((resp)=>{
-        this.getShop();        
-      },(err)=>{
-        console.log(err);
-      });
-    }
+  createShopModal() {
+    let shopModal = this.modalControl.create(CreateshopPage);
+    shopModal.onDidDismiss(data => {
+      if (data && data.name) {
+        let loading = this.loadingCtrl.create();
+        loading.present();
+        this.shopService.createShop(data)
+          .then((resp) => {
+            loading.dismiss();
+            this.getShop();
+          }, (err) => {
+            loading.dismiss();
+            console.log(err);
+          });
+      }
 
-  });
-  shopModal.present();
+    });
+    shopModal.present();
 
   }
 

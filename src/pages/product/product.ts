@@ -34,7 +34,7 @@ export class ProductPage {
   ) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad ProductPage');
 
     this.shop = JSON.parse(window.localStorage.getItem('shop'));

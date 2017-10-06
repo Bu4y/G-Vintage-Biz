@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { LoadingController, NavController, Platform } from 'ionic-angular';
 import { OrderModel, OrderService } from "@ngcommerce/core";
 import { Chart } from 'chart.js';
 
@@ -23,12 +23,14 @@ export class HomePage {
   doughnutChart: any;
   lineChart: any;
   user: any;
-  constructor(public navCtrl: NavController, public orderService: OrderService) {
+  constructor(public navCtrl: NavController, public orderService: OrderService, public loadingCtrl: LoadingController, ) {
   }
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     // console.log(this.shop);
     // this.shop
     console.log('ionViewDidLoad HomePage');
+    let loading = this.loadingCtrl.create();
+    loading.present();
     this.orderService.getOrderByShop().then(data => {
 
       // this.homeData = data;
@@ -97,7 +99,7 @@ export class HomePage {
         }
 
       });
-
+      loading.dismiss();
 
     })
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the NotificationPage page.
@@ -15,11 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NotificationPage {
   notifications: Array<any> = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
   }
 
   ionViewWillEnter() {
+    let loading = this.loadingCtrl.create();
+    loading.present();
     this.notifications = JSON.parse(window.localStorage.getItem('sellerNotification'));
+    loading.dismiss();
     // alert(this.notifications);
   }
 

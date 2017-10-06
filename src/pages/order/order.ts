@@ -1,5 +1,6 @@
+import { Loading } from 'ionic-angular/es2015';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
 import { CorService, OrderModel, OrderService, ItemByOrderByShopModel } from "@ngcommerce/core";
 import { OrderDetailPage } from '../order-detail/order-detail';
 
@@ -37,8 +38,7 @@ export class OrderPage {
       title: "Return"
     }
   ];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public orderService: OrderService) {
-    this.getOrder();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public orderService: OrderService,public loadingCtrl: LoadingController) {
     this.channel = 1;
   }
 
@@ -51,10 +51,14 @@ export class OrderPage {
   }
 
   getOrder() {
+    let loading = this.loadingCtrl.create();
+    loading.present();
     this.orderService.getOrderByShop().then((data) => {
       console.log(data);
       this.order = data;
+      loading.dismiss();
     }, (err) => {
+      loading.dismiss();
       console.log(err);
     });
   }
