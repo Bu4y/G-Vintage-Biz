@@ -45,6 +45,11 @@ export class OrderPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderPage');
   }
+
+  ionViewWillEnter(){
+    this.getOrder();
+  }
+
   getOrder() {
     this.orderService.getOrderByShop().then((data) => {
       console.log(data);
