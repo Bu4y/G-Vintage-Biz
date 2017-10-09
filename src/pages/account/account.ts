@@ -1,7 +1,8 @@
+import { LoginPage } from './../login/login';
 import { ListshopPage } from '../listshop/listshop';
 import { AuthenService } from '@ngcommerce/core';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 /**
  * Generated class for the AccountPage page.
  *
@@ -16,7 +17,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AccountPage {
   user: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalControl: ModalController) {
     this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
   }
 
@@ -24,11 +25,16 @@ export class AccountPage {
     console.log('ionViewDidLoad AccountPage');
   }
 
-  logout(){
+  logout() {
     window.localStorage.removeItem('jjuserbuyer');
-    this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));    
+    this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
   }
-  createshop(e){
+  createshop(e) {
     this.navCtrl.push(ListshopPage);
+  }
+
+  loginModal(e) {
+    let loginModal = this.modalControl.create(LoginPage);
+    loginModal.present();
   }
 }
