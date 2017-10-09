@@ -30,7 +30,7 @@ export class RegisterPage {
     newUser.firstName = this.user.first_name;
     newUser.lastName = this.user.last_name;
 
-    alert(JSON.stringify(newUser));
+    // alert(JSON.stringify(newUser));
     let loading = this.loadingCtrl.create();
     loading.present();
     this.service.signUp(newUser).then(data=>{

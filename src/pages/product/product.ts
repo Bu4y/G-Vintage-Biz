@@ -72,7 +72,7 @@ export class ProductPage {
       loading.dismiss();
     }).catch(e => {
       loading.dismiss();
-      console.log(e);
+      alert(e);
     })
   }
 
@@ -90,7 +90,7 @@ export class ProductPage {
           this.getProduct(this.shop);
         }, (err) => {
           loading.dismiss();
-          console.log(err);
+          alert(err);
         });
       }
     });
