@@ -54,7 +54,7 @@ export class OrderDetailPage {
               this.navCtrl.pop();
             }, (err) => {
               loading.dismiss();
-              console.log(err);
+              alert(err);
             });
           }
         }
@@ -71,7 +71,7 @@ export class OrderDetailPage {
         this.navCtrl.pop();
       }, (err) => {
         loading.dismiss();
-        console.log(err);
+        alert(err);
       });
     } else if (item.status == "accept") {
       loading.dismiss();
@@ -84,7 +84,7 @@ export class OrderDetailPage {
         this.navCtrl.pop();
       }, (err) => {
         loading.dismiss();
-        console.log(err);
+        alert(err);
       })
     } else if (item.status == "return") {
 
@@ -100,7 +100,7 @@ export class OrderDetailPage {
       this.navCtrl.pop();
     }, (err) => {
       loading.dismiss();      
-      console.log(err);
+      alert(err);
     })
 
   }

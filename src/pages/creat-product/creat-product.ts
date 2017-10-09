@@ -45,7 +45,7 @@ export class CreatProductPage {
       this.loadCate();
     }, (err) => {
       loading.dismiss();
-      console.log(err);
+      alert(err);
     });
   }
 
@@ -58,7 +58,7 @@ export class CreatProductPage {
       this.loadShipping();
     }, (err) => {
       loading.dismiss();
-      console.log(err);
+      alert(err);
     });
   }
 
@@ -70,7 +70,7 @@ export class CreatProductPage {
       loading.dismiss();
     }, (err) => {
       loading.dismiss();
-      console.log(err);
+      alert(err);
     });
   }
 

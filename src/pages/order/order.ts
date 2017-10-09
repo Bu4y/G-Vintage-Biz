@@ -59,7 +59,7 @@ export class OrderPage {
       loading.dismiss();
     }, (err) => {
       loading.dismiss();
-      console.log(err);
+      alert(err);
     });
   }
 

@@ -45,7 +45,7 @@ export class ListshopPage {
             this.getShop();
           }, (err) => {
             loading.dismiss();
-            console.log(err);
+            alert(err);
           });
       }
 

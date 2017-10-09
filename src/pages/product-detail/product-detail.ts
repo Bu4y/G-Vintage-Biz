@@ -26,7 +26,7 @@ export class ProductDetailPage {
             loading.dismiss();
           }).catch(e => {
             loading.dismiss();
-            console.log(e);
+            alert(e);
           })
         }
   }
