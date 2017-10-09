@@ -1,3 +1,41 @@
 page-creat-product {
-
+    .horizontal-categories {
+        border-bottom: 10px solid;
+        padding-bottom: 16px;
+        .scroll-content {
+            position: relative;
+            contain: style layout;
+        }
+        preload-image {
+            img {
+                z-index: -3;
+            }
+        }
+        .categories-row {
+            &::after {
+                content: '';
+            }
+            height: 70px;
+        }
+        .horizontal-item {
+        }
+        .add-img {
+            width: 76px;
+            margin-left: 10px;
+        }
+        .trash {
+            right: 2px;
+            position: absolute;
+            top: 0px;
+            color: #ffffff;
+        }
+        
+    }
+    .right{
+        text-align: right;
+    }
+    .ion-icon-cust {
+        font-size: 2.2em;
+        right: 10px;
+    }
 }

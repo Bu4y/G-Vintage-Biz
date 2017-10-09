@@ -20,12 +20,16 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from "@angular/http";
-import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonDetailProductComponent,IonFormProductComponent,IonListShopComponent,IonFormShopComponent } from "@ngcommerce/core";
+import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonDetailProductComponent, IonFormProductComponent, IonListShopComponent, IonFormShopComponent, IonUploadImageComponent } from "@ngcommerce/core";
 import { Ionic2RatingModule } from 'ionic2-rating'
 import { OrderDetailPage } from '../pages/order-detail/order-detail';
 import { ProductDetailPage } from './../pages/product-detail/product-detail';
 import { CreatProductPage } from '../pages/creat-product/creat-product';
 import { ListshopPage } from '../pages/listshop/listshop';
+import { ImagePicker } from "@ionic-native/image-picker";
+import { Base64 } from "@ionic-native/base64";
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -53,8 +57,9 @@ import { ListshopPage } from '../pages/listshop/listshop';
     IonDetailProductComponent,
     IonFormProductComponent,
     IonListShopComponent,
-    IonFormShopComponent
-    
+    IonFormShopComponent,
+    IonUploadImageComponent
+
   ],
   imports: [
     BrowserModule,
@@ -87,6 +92,8 @@ import { ListshopPage } from '../pages/listshop/listshop';
     Facebook,
     SplashScreen,
     OneSignal,
+    ImagePicker,
+    Base64,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
