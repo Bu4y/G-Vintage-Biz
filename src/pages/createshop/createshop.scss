@@ -38,4 +38,24 @@ page-createshop {
         font-size: 2.2em;
         right: 10px;
     }
+
+    #imageTrash{
+        color: #b3b2b2;
+    }
+
+    ion-icon {
+        display: inline-block;
+        font-size: 1.5em;
+        color: #b3b2b2;
+       
+        margin:3px 7px 0px 2px;
+      }
+
+      #shopImg{
+        margin-left: 17px !important;
+        font-size: 17px;
+        color: #b3b2b2 !important;
+        margin-top: 24px;
+        font-weight: 500;
+      }
 }
