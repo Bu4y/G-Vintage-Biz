@@ -1,6 +1,6 @@
 import { CreatProductPage } from '../creat-product/creat-product';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams,AlertController ,ModalController} from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { CorService, ProductModel, ProductService } from "@ngcommerce/core";
 /**
  * Generated class for the ProductDetailPage page.
@@ -17,36 +17,36 @@ import { CorService, ProductModel, ProductService } from "@ngcommerce/core";
 export class ProductDetailPage {
   items = {} as ProductModel;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productService: ProductService,public loadingCtrl: LoadingController,public alertCtrl: AlertController, public modalCtrl: ModalController,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public productService: ProductService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public modalCtrl: ModalController, ) {
     {
       let loading = this.loadingCtrl.create();
       loading.present();
-          this.productService.getProductByID(this.navParams.data._id).then(data => {
-            console.log(data);
-            this.items = data;
-            loading.dismiss();
-          }).catch(e => {
-            loading.dismiss();
-            alert(e);
-          })
-        }
+      this.productService.getProductByID(this.navParams.data._id).then(data => {
+        console.log(data);
+        this.items = data;
+        loading.dismiss();
+      }).catch(e => {
+        loading.dismiss();
+        alert(e);
+      })
+    }
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductDetailPage');
   }
-  alertdeleteProduct(item){
+  alertdeleteProduct(item) {
     this.presentConfirm(item);
   }
-  deleteProduct(item){
+  deleteProduct(item) {
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.productService.deleteProduct(item._id).then((data)=>{
-     this.navCtrl.pop();
+    this.productService.deleteProduct(item._id).then((data) => {
+      this.navCtrl.pop();
       loading.dismiss();
-    },(err)=>{
+    }, (err) => {
       alert(JSON.parse(err._body).message);
-      loading.dismiss();      
+      loading.dismiss();
     });
   }
   presentConfirm(item) {
@@ -72,17 +72,29 @@ export class ProductDetailPage {
     });
     alert.present();
   }
-  updateProduct(e){
+  updateProduct(e) {
     // e = {} as ProductModel;
-    let productBind = JSON.parse(JSON.stringify(e));
+    let productBind = {
+      _id:e._id,
+      name: e.name,
+      detail: e.detail,
+      price: e.price,
+      currency: e.currency,
+      promotionprice: e.promotionprice,
+      percentofdiscount: e.percentofdiscount,
+      shop: e.shop,
+      shippings: e.shippings,
+      categories: e.categories,
+      images:e.images
+    };
     console.log(e.name);
-    let productModal = this.modalCtrl.create(CreatProductPage,productBind);
+    let productModal = this.modalCtrl.create(CreatProductPage, productBind);
     productModal.onDidDismiss(data => {
       if (data && data.name && data.name !== undefined) {
         let loading = this.loadingCtrl.create();
         loading.present();
         this.productService.updateProduct(data).then((resq) => {
-          loading.dismiss();          
+          loading.dismiss();
           this.navCtrl.pop();
         }, (err) => {
           loading.dismiss();
