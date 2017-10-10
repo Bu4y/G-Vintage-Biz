@@ -43,13 +43,15 @@ export class LoginPage {
     loading.present();
     this.authenService.signIn(this.credential).then(data => {
       window.localStorage.setItem('jjuserbuyer', JSON.stringify(data));
-      this.navCtrl.push(TabsPage);
-      loading.dismiss();
-      this.viewCtrl.dismiss();
+
 
       this.oneSignal.getIds().then((data) => {
         this.authenService.pushNotificationUser({ id: data.userId });
       });
+      
+      this.navCtrl.push(TabsPage);
+      loading.dismiss();
+      this.viewCtrl.dismiss();
 
       // alert(JSON.stringify(data));
     }).catch(e => {
