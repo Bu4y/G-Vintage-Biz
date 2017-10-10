@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { AuthenService, SignupModel, SigninModel } from "@ngcommerce/core";
-
+import { OneSignal } from '@ionic-native/onesignal';
 /**
  * Generated class for the LoginPage page.
  *
@@ -21,7 +21,15 @@ import { AuthenService, SignupModel, SigninModel } from "@ngcommerce/core";
 export class LoginPage {
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: Facebook, public authenService: AuthenService,public loadingCtrl:LoadingController,public viewCtrl: ViewController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private fb: Facebook,
+    public authenService: AuthenService,
+    public loadingCtrl: LoadingController,
+    public viewCtrl: ViewController,
+    public oneSignal: OneSignal
+  ) {
   }
 
   ionViewDidLoad() {
@@ -34,11 +42,18 @@ export class LoginPage {
     let loading = this.loadingCtrl.create();
     loading.present();
     this.authenService.signIn(this.credential).then(data => {
-      window.localStorage.setItem('jjuserbuyer',JSON.stringify(data));
+      window.localStorage.setItem('jjuserbuyer', JSON.stringify(data));
+
+
+      this.oneSignal.getIds().then((data) => {
+        this.authenService.pushNotificationUser({ id: data.userId });
+      });
+      
       this.navCtrl.push(TabsPage);
       loading.dismiss();
       this.viewCtrl.dismiss();
-     // alert(JSON.stringify(data));
+
+      // alert(JSON.stringify(data));
     }).catch(e => {
       loading.dismiss();
       alert(JSON.parse(e._body).message);
