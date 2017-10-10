@@ -39,7 +39,7 @@ export class TabsPage {
       }
     }, err => {
       loading.dismiss();
-      alert(err);
+      alert(JSON.parse(err._body).message);
     });
   }
   createShopModal() {
@@ -53,7 +53,7 @@ export class TabsPage {
             loading.dismiss();
           }, (err) => {
             loading.dismiss();
-            alert(err);
+            alert(JSON.parse(err._body).message);
           });
       }
 

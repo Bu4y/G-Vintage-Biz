@@ -103,7 +103,7 @@ export class HomePage {
 
     },err=>{
       loading.dismiss();
-      alert(err);
+      alert(JSON.parse(err._body).message);
     })
   }
 

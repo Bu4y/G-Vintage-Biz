@@ -45,7 +45,7 @@ export class CreatProductPage {
       this.loadCate();
     }, (err) => {
       loading.dismiss();
-      alert(err);
+      alert(JSON.parse(err._body).message);
     });
   }
 
@@ -58,7 +58,7 @@ export class CreatProductPage {
       this.loadShipping();
     }, (err) => {
       loading.dismiss();
-      alert(err);
+      alert(JSON.parse(err._body).message);
     });
   }
 
@@ -70,7 +70,7 @@ export class CreatProductPage {
       loading.dismiss();
     }, (err) => {
       loading.dismiss();
-      alert(err);
+      alert(JSON.parse(err._body).message);
     });
   }
 

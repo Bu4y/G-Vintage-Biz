@@ -90,7 +90,7 @@ export class ProductPage {
           this.getProduct(this.shop);
         }, (err) => {
           loading.dismiss();
-          alert(err);
+          alert(JSON.parse(err._body).message);
         });
       }
     });

@@ -54,7 +54,7 @@ export class OrderDetailPage {
               this.navCtrl.pop();
             }, (err) => {
               loading.dismiss();
-              alert(err);
+              alert(JSON.parse(err._body).message);
             });
           }
         }
@@ -71,7 +71,7 @@ export class OrderDetailPage {
         this.navCtrl.pop();
       }, (err) => {
         loading.dismiss();
-        alert(err);
+        alert(JSON.parse(err._body).message);
       });
     } else if (item.status == "accept") {
       loading.dismiss();
@@ -84,7 +84,7 @@ export class OrderDetailPage {
         this.navCtrl.pop();
       }, (err) => {
         loading.dismiss();
-        alert(err);
+        alert(JSON.parse(err._body).message);
       })
     } else if (item.status == "return") {
 
@@ -100,7 +100,7 @@ export class OrderDetailPage {
       this.navCtrl.pop();
     }, (err) => {
       loading.dismiss();      
-      alert(err);
+      alert(JSON.parse(err._body).message);
     })
 
   }
