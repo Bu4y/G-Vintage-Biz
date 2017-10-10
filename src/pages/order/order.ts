@@ -68,4 +68,13 @@ export class OrderPage {
     this.navCtrl.push(OrderDetailPage, e);
     // alert(e);
   }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.ionViewWillEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
 }
+

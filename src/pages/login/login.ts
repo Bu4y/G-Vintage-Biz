@@ -41,7 +41,7 @@ export class LoginPage {
      // alert(JSON.stringify(data));
     }).catch(e => {
       loading.dismiss();
-      alert(JSON.stringify(e));
+      alert(JSON.parse(e._body).message);
     });
   }
   loginfb() {
@@ -50,12 +50,12 @@ export class LoginPage {
         this.fb.api('me?fields=email,id,first_name,last_name', null).then((res: FacebookLoginResponse) =>
           this.registerFb(res))
           .catch(e => {
-            alert(JSON.stringify(e));
+            alert(JSON.parse(e._body).message);
           })
       )
       // this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
       .catch(e => {
-        alert(JSON.stringify(e));
+        alert(JSON.parse(e._body).message);
       });
   }
 
