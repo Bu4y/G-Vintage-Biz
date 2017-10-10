@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams,AlertController } from 'ionic-angular';
 import { CorService, ProductModel, ProductService } from "@ngcommerce/core";
 /**
  * Generated class for the ProductDetailPage page.
@@ -16,7 +16,7 @@ import { CorService, ProductModel, ProductService } from "@ngcommerce/core";
 export class ProductDetailPage {
   items = {} as ProductModel;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productService: ProductService,public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public productService: ProductService,public loadingCtrl: LoadingController,public alertCtrl: AlertController) {
     {
       let loading = this.loadingCtrl.create();
       loading.present();
@@ -33,5 +33,42 @@ export class ProductDetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductDetailPage');
+  }
+  alertdeleteProduct(item){
+    this.presentConfirm(item);
+  }
+  deleteProduct(item){
+    let loading = this.loadingCtrl.create();
+    loading.present();
+    this.productService.deleteProduct(item._id).then((data)=>{
+     this.navCtrl.pop();
+      loading.dismiss();
+    },(err)=>{
+      alert(JSON.parse(err._body).message);
+      loading.dismiss();      
+    });
+  }
+  presentConfirm(item) {
+    const alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Do you want to delete this Product?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            console.log('delete');
+            this.deleteProduct(item);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

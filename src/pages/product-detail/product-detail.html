@@ -8,6 +8,16 @@
 
   <ion-navbar>
     <ion-title>productDetail</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="alertdeleteProduct(items)">
+        <ion-icon name="trash" color="danger"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
