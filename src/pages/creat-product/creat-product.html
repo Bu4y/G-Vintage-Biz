@@ -15,5 +15,5 @@
 
 <ion-content>
   <ion-form-product *ngIf="categories && categories.length > 0 && shippings && shippings.length > 0 && shops && shops.length > 0"
-    [categories]="categories" [shippings]="shippings" [shops]="shops" (itemClicked)="createProduct($event)"></ion-form-product>
+    [categories]="categories" [shippings]="shippings" [shops]="shops" [item]="e" (itemClicked)="createProduct($event)"></ion-form-product>
 </ion-content>

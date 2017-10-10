@@ -1,5 +1,6 @@
+import { CreatProductPage } from '../creat-product/creat-product';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams,AlertController ,ModalController} from 'ionic-angular';
 import { CorService, ProductModel, ProductService } from "@ngcommerce/core";
 /**
  * Generated class for the ProductDetailPage page.
@@ -16,7 +17,7 @@ import { CorService, ProductModel, ProductService } from "@ngcommerce/core";
 export class ProductDetailPage {
   items = {} as ProductModel;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productService: ProductService,public loadingCtrl: LoadingController,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public productService: ProductService,public loadingCtrl: LoadingController,public alertCtrl: AlertController, public modalCtrl: ModalController,) {
     {
       let loading = this.loadingCtrl.create();
       loading.present();
@@ -70,5 +71,25 @@ export class ProductDetailPage {
       ]
     });
     alert.present();
+  }
+  updateProduct(e){
+    // e = {} as ProductModel;
+    let productBind = JSON.parse(JSON.stringify(e));
+    console.log(e.name);
+    let productModal = this.modalCtrl.create(CreatProductPage,productBind);
+    productModal.onDidDismiss(data => {
+      if (data && data.name && data.name !== undefined) {
+        let loading = this.loadingCtrl.create();
+        loading.present();
+        this.productService.updateProduct(data).then((resq) => {
+          loading.dismiss();          
+          this.navCtrl.pop();
+        }, (err) => {
+          loading.dismiss();
+          alert(JSON.parse(err._body).message);
+        });
+      }
+    });
+    productModal.present();
   }
 }
