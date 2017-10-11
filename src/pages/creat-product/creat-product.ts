@@ -7,6 +7,8 @@ import {
   ShopListModel,
   ShopModel,
   ShopService,
+  CurrencyModel,
+  CurrencyService
 } from '@ngcommerce/core';
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, ViewController } from 'ionic-angular';
@@ -28,6 +30,7 @@ export class CreatProductPage {
   shops: Array<ShopModel> = [];
   categories: Array<CategoryModel>;
   shippings: Array<ShippingModel>;
+  currency: Array<CurrencyModel>;
   e = {} as ProductModel;
   showForm: Boolean = false;
   constructor(
@@ -36,6 +39,7 @@ export class CreatProductPage {
     public shopService: ShopService,
     public categoryService: CategoryService,
     public shippingService: ShippingService,
+    public currencyService: CurrencyService,
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController
   ) {
@@ -78,6 +82,19 @@ export class CreatProductPage {
     loading.present();
     this.shippingService.getShippingList().then((data) => {
       this.shippings = data;
+      loading.dismiss();
+      this.loadCurrency();
+    }, (err) => {
+      loading.dismiss();
+      alert(JSON.parse(err._body).message);
+    });
+  }
+
+  loadCurrency() {
+    let loading = this.loadingCtrl.create();
+    loading.present();
+    this.currencyService.getCurrencyList().then((data) => {
+      this.currency = data;
       this.showForm = true;
       loading.dismiss();
     }, (err) => {
