@@ -75,19 +75,21 @@ export class ProductDetailPage {
   updateProduct(e) {
     // e = {} as ProductModel;
     let productBind = {
-      _id:e._id,
+      _id: e._id,
       name: e.name,
       detail: e.detail,
       price: e.price,
       currency: e.currency,
       promotionprice: e.promotionprice,
       percentofdiscount: e.percentofdiscount,
-      shop: e.shop,
+      shop: {
+        _id: e.shop._id
+      },
       shippings: e.shippings,
       categories: e.categories,
-      images:e.images
+      images: e.images
     };
-    console.log(e.name);
+    console.log(productBind);
     let productModal = this.modalCtrl.create(CreatProductPage, productBind);
     productModal.onDidDismiss(data => {
       if (data && data.name && data.name !== undefined) {

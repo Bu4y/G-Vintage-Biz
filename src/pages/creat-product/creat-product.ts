@@ -1,12 +1,12 @@
 import {
-    CategoryModel,
-    CategoryService,
-    ProductModel,
-    ShippingModel,
-    ShippingService,
-    ShopListModel,
-    ShopModel,
-    ShopService,
+  CategoryModel,
+  CategoryService,
+  ProductModel,
+  ShippingModel,
+  ShippingService,
+  ShopListModel,
+  ShopModel,
+  ShopService,
 } from '@ngcommerce/core';
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, ViewController } from 'ionic-angular';
@@ -25,10 +25,11 @@ import { IonicPage, LoadingController, NavController, NavParams, ViewController 
 })
 export class CreatProductPage {
 
-  shops :Array<ShopModel> = [];
+  shops: Array<ShopModel> = [];
   categories: Array<CategoryModel>;
   shippings: Array<ShippingModel>;
   e = {} as ProductModel;
+  showForm: Boolean = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -39,7 +40,7 @@ export class CreatProductPage {
     public viewCtrl: ViewController
   ) {
     this.e = this.navParams.data;
-    console.log(this.e);
+    // console.log(this.e);
   }
 
   ionViewDidLoad() {
@@ -77,6 +78,7 @@ export class CreatProductPage {
     loading.present();
     this.shippingService.getShippingList().then((data) => {
       this.shippings = data;
+      this.showForm = true;
       loading.dismiss();
     }, (err) => {
       loading.dismiss();
