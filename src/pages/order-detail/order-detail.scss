@@ -103,14 +103,29 @@ page-order-detail {
    
 
     
-    img {
+img {
         /* max-width: 100%; */
         /* border: 0; */
         width: 100%;
         max-width: 100%;
         height: 300px;
         max-height: 100%;
-      }
-
-
+}
+#price{
+    text-decoration: line-through;
+    color: #bdbdbd;
+    font-size: 13px;
+  }
+  #percentofdiscount{
+    font-size: 13px;
+    color: #ff0000;
+  }
+  #promotionprice{
+    color: #ff0000;
+    font-size: 16px;
+  }
+  #priceNormal{
+    color: #ff0000;
+    font-size: 16px;
+  }
 }
