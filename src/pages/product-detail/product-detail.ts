@@ -85,10 +85,16 @@ export class ProductDetailPage {
       shop: {
         _id: e.shop._id
       },
-      shippings: e.shippings,
-      categories: e.categories,
+      shippings: [],
+      categories: [],
       images: e.images
     };
+    e.categories.forEach(element => {
+      productBind.categories.push(element._id);
+    });
+    e.shippings.forEach(element => {
+      productBind.shippings.push(element._id);
+    });
     console.log(productBind);
     let productModal = this.modalCtrl.create(CreatProductPage, productBind);
     productModal.onDidDismiss(data => {
