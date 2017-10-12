@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="header-cs">
     <ion-title>Login</ion-title>
   </ion-navbar>
 
@@ -14,18 +14,40 @@
 
 
 <ion-content padding>
+<ion-row>
+  
+    <ion-col col-12 text-center>
+        <img src="./assets/image/logo-cream.png">
+   
+      </ion-col>
+      
+</ion-row>
+<ion-list>
 
 <ion-item>
   <ion-label floating >Username</ion-label>
   <ion-input type="text" [(ngModel)]="credential.username"></ion-input>
 </ion-item>
+
 <ion-item>
   <ion-label floating >Password</ion-label>
   <ion-input type="password" [(ngModel)]="credential.password"></ion-input>
 </ion-item>
+</ion-list>
 
-<button ion-button (click)="login()" block >Login</button>
-<button ion-button (click)="register()" block >Register</button>
-<button ion-button (click)="loginfb()" block >login with Facebook</button>
+<ion-row>
+    <ion-col>
+<button id="btnlogin" ion-button block (click)="login()" block >Login</button>
+</ion-col>
 
+        <ion-col> 
+<button id="btnregister" ion-button block (click)="register()" block >Register</button>
+</ion-col>
+</ion-row>
+
+<ion-row>
+    <ion-col>
+<button ion-button block (click)="loginfb()" block >login with Facebook</button>
+</ion-col>
+</ion-row>
 </ion-content>
