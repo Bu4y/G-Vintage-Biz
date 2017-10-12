@@ -28,6 +28,7 @@ import { CreatProductPage } from '../pages/creat-product/creat-product';
 import { ListshopPage } from '../pages/listshop/listshop';
 import { ImagePicker } from "@ionic-native/image-picker";
 import { Base64 } from "@ionic-native/base64";
+import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { Base64 } from "@ionic-native/base64";
     IonFormProductComponent,
     IonListShopComponent,
     IonFormShopComponent,
-    IonUploadImageComponent
+    IonUploadImageComponent,
+    EditProfilePage
 
   ],
   imports: [
@@ -85,7 +87,8 @@ import { Base64 } from "@ionic-native/base64";
     ProductDetailPage,
     CreatProductPage,
     ListshopPage,
-    CreateshopPage
+    CreateshopPage,
+    EditProfilePage
   ],
   providers: [
     StatusBar,

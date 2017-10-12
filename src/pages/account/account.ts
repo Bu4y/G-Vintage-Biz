@@ -3,6 +3,7 @@ import { ListshopPage } from '../listshop/listshop';
 import { AuthenService } from '@ngcommerce/core';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 /**
  * Generated class for the AccountPage page.
  *
@@ -36,5 +37,9 @@ export class AccountPage {
   loginModal(e) {
     let loginModal = this.modalControl.create(LoginPage);
     loginModal.present();
+  }
+
+  editProfile(e) {
+    this.navCtrl.push(EditProfilePage);
   }
 }
