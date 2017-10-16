@@ -28,7 +28,9 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      this.initOnesignal();
+      if (platform.is('cordova')) {
+        this.initOnesignal();
+      }
     });
     this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
     if (this.user) {
