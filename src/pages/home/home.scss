@@ -1,13 +1,10 @@
 page-home {
     .font-jjgreen {
-        
         width: 100vh !important;
         height: 12vh !important;
-        margin-bottom:-10px;
+        margin-bottom: -10px;
         min-width: 100%;
-        
     }
-
     .col {
         /* padding: 5px; */
         position: relative;
@@ -22,16 +19,18 @@ page-home {
         -ms-flex-positive: 1;
         /* flex-grow: 1; */
         /* max-width: 100%; */
-      }
-      ion-navbar{
-        ion-item{   
+    }
+    ion-navbar {
+        ion-item {
             background-color: transparent !important;
             color: white !important;
             text-align: center !important;
-            .item-inner{
+            .item-inner {
                 border-bottom: none !important;
             }
         }
-      }
-
+    }
+    .iconHome{
+        font-size: 30px;
+    }
 }
