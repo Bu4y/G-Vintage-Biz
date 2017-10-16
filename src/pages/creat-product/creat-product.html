@@ -8,6 +8,11 @@
 
   <ion-navbar color="header-cs">
     <ion-title>{{e._id?'Edit Product':'Create Product'}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="cancelDissmis()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,7 +21,8 @@
 <ion-content>
   <div *ngIf="showForm">
     <ion-form-product *ngIf="categories && categories.length > 0 && shippings && shippings.length > 0 && shops && shops.length > 0"
-      [categories]="categories" [shippings]="shippings" [shops]="shops" [currency]="currency" [item]="e" (itemClicked)="createProduct($event)" (cancelCreate)="cancelDissmis($event)"></ion-form-product>
+      [categories]="categories" [shippings]="shippings" [shops]="shops" [currency]="currency" [item]="e" (itemClicked)="createProduct($event)"
+      (cancelCreate)="cancelDissmis($event)"></ion-form-product>
 
   </div>
 </ion-content>
