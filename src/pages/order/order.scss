@@ -141,6 +141,15 @@ page-order {
         color: #ff0000;
         font-size: 16px;
       }
-
+      ion-navbar{
+        ion-item{   
+            background-color: transparent !important;
+            color: white !important;
+            text-align: center !important;
+            .item-inner{
+                border-bottom: none !important;
+            }
+        }
+      }
      
 }

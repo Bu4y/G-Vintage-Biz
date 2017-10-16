@@ -3,11 +3,9 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name="md-list"></ion-icon>
     </button>
-    <ion-title>
-      Home
-    </ion-title>
     <ion-item>
-      <ion-avatar item-end>
+      Home
+      <ion-avatar item-end *ngIf="shop">
         <img src="{{ shop.image }}">
       </ion-avatar>
     </ion-item>
@@ -15,6 +13,7 @@
 </ion-header>
 
 <ion-content no-padding>
+  <div *ngIf="shop">
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
     </ion-refresher-content>
@@ -41,4 +40,8 @@
       <canvas #doughnutCanvas></canvas>
     </ion-card-content>
   </ion-card>
+</div>
+<div *ngIf="!shop">
+fgfg
+</div>
 </ion-content>

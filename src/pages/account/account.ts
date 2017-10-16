@@ -1,8 +1,9 @@
+import { ShopModel } from '@ngcommerce/core';
 import { LoginPage } from './../login/login';
 import { ListshopPage } from '../listshop/listshop';
 import { AuthenService } from '@ngcommerce/core';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, MenuController, LoadingController } from 'ionic-angular';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 /**
  * Generated class for the AccountPage page.
@@ -18,11 +19,15 @@ import { EditProfilePage } from '../edit-profile/edit-profile';
 })
 export class AccountPage {
   user: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalControl: ModalController) {
+  shop = {} as ShopModel;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalControl: ModalController, public menuController: MenuController, public loadingCtrl: LoadingController) {
     this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+    this.workaroundSideMenu();
+    let shop = JSON.parse(window.localStorage.getItem("shop"));
+    this.shop = shop;
     console.log('ionViewDidLoad AccountPage');
   }
 
@@ -41,5 +46,17 @@ export class AccountPage {
 
   editProfile(e) {
     this.navCtrl.push(EditProfilePage);
+  }
+
+  private workaroundSideMenu() {
+    let leftMenu = this.menuController.get('left');
+    if (leftMenu) {
+      leftMenu.ionClose.subscribe(() => {
+        let loading = this.loadingCtrl.create();
+        loading.present();
+        this.shop = JSON.parse(window.localStorage.getItem('shop'));
+        loading.dismiss();
+      });
+    }
   }
 }
