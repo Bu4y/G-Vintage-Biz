@@ -14,34 +14,38 @@
 
 <ion-content no-padding>
   <div *ngIf="shop">
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
-    </ion-refresher-content>
-  </ion-refresher>
-  <ion-row no-padding>
-    <ion-col col-12>
-      <img class="font-jjgreen" src="./assets/image/x1.png">
-    </ion-col>
-  </ion-row>
-  <ion-card>
-    <ion-card-header>
-      Line Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #lineCanvas></canvas>
-    </ion-card-content>
-  </ion-card>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+    <ion-row no-padding>
+      <ion-col col-12>
+        <img class="font-jjgreen" src="./assets/image/x1.png">
+      </ion-col>
+    </ion-row>
+    <ion-card>
+      <ion-card-header>
+        Line Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #lineCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card>
-    <ion-card-header>
-      Doughnut Chart
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #doughnutCanvas></canvas>
-    </ion-card-content>
-  </ion-card>
-</div>
-<div *ngIf="!shop">
-fgfg
-</div>
+    <ion-card>
+      <ion-card-header>
+        Doughnut Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!shop">
+    <ion-row>
+      <ion-col col-12>
+        <img src="./assets/image/please.png">
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

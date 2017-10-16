@@ -13,7 +13,7 @@
       </button>
       <ion-item>
           Notification
-        <ion-avatar item-end>
+        <ion-avatar item-end *ngIf="shop">
           <img src="{{ shop.image }}">
         </ion-avatar>
       </ion-item>

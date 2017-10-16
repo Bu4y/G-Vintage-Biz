@@ -20,7 +20,6 @@ export class ProductPage {
 
   product = {} as ProductListModel;
   loadData: Boolean = false;
-  shopSelected = JSON.stringify(JSON.parse(window.localStorage.getItem('shop')));
   shop = {} as ShopModel;
 
   constructor(
@@ -50,14 +49,9 @@ export class ProductPage {
     if (leftMenu) {
       leftMenu.ionClose.subscribe(() => {
         this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        let shopSelected = JSON.parse(this.shopSelected);
-        if (shopSelected) {
-          if (this.shop._id === shopSelected._id) {
-            return;
-          }
+        if (this.shop) {
+          this.getProduct(this.shop);
         }
-        this.getProduct(this.shop);
-        this.shopSelected = JSON.stringify(this.shop);
       });
     }
   }
@@ -67,9 +61,9 @@ export class ProductPage {
     let loading = this.loadingCtrl.create();
     loading.present();
     this.productService.getProductListByShop(shop._id).then(data => {
+      loading.dismiss();
       console.log(data);
       this.product = data;
-      loading.dismiss();
     }).catch(e => {
       loading.dismiss();
       alert(e);

@@ -48,15 +48,16 @@ export class OrderPage {
   }
 
   ionViewWillEnter() {
-    this.getOrder();
+    this.shop = JSON.parse(window.localStorage.getItem('shop'));
+    if (this.shop) {
+      this.getOrder(this.shop);
+    }
     this.workaroundSideMenu();
   }
 
-  getOrder() {
+  getOrder(shop) {
     let loading = this.loadingCtrl.create();
     loading.present();
-    let shop = JSON.parse(window.localStorage.getItem("shop"));
-    this.shop = shop;
     this.orderService.getOrderByShop(shop._id).then((data) => {
       console.log(data);
       this.order = data;
@@ -85,8 +86,9 @@ export class OrderPage {
     if (leftMenu) {
       leftMenu.ionClose.subscribe(() => {
         this.shop = JSON.parse(window.localStorage.getItem('shop'));
-
-        this.getOrder();
+        if (this.shop) {
+          this.getOrder(this.shop);
+        }
       });
     }
   }
