@@ -1,7 +1,7 @@
 import { Loading } from 'ionic-angular/es2015';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
-import { CorService, OrderModel, OrderService, ItemByOrderByShopModel } from "@ngcommerce/core";
+import { IonicPage, LoadingController, NavController, NavParams, MenuController } from 'ionic-angular';
+import { CorService, OrderModel, OrderService, ItemByOrderByShopModel, ShopModel } from "@ngcommerce/core";
 import { OrderDetailPage } from '../order-detail/order-detail';
 
 /**
@@ -38,7 +38,8 @@ export class OrderPage {
       title: "Return"
     }
   ];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public orderService: OrderService,public loadingCtrl: LoadingController) {
+  shop = {} as ShopModel;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public orderService: OrderService, public loadingCtrl: LoadingController, public menuController: MenuController) {
     this.channel = 1;
   }
 
@@ -46,14 +47,16 @@ export class OrderPage {
     console.log('ionViewDidLoad OrderPage');
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.getOrder();
+    this.workaroundSideMenu();
   }
 
   getOrder() {
     let loading = this.loadingCtrl.create();
     loading.present();
     let shop = JSON.parse(window.localStorage.getItem("shop"));
+    this.shop = shop;
     this.orderService.getOrderByShop(shop._id).then((data) => {
       console.log(data);
       this.order = data;
@@ -76,6 +79,16 @@ export class OrderPage {
       console.log('Async operation has ended');
       refresher.complete();
     }, 2000);
+  }
+  private workaroundSideMenu() {
+    let leftMenu = this.menuController.get('left');
+    if (leftMenu) {
+      leftMenu.ionClose.subscribe(() => {
+        this.shop = JSON.parse(window.localStorage.getItem('shop'));
+
+        this.getOrder();
+      });
+    }
   }
 }
 

@@ -27,14 +27,9 @@ page-home {
         ion-item{   
             background-color: transparent !important;
             color: white !important;
+            text-align: center !important;
             .item-inner{
                 border-bottom: none !important;
-            }
-            
-        }
-        ion-title{
-            .toolbar-title-md {
-                padding: 0 90px !important;
             }
         }
       }

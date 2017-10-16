@@ -14,4 +14,14 @@ page-account {
         contain: size style layout;
         background-color: #ece8e8;
       }
+    ion-navbar{
+        ion-item{   
+            background-color: transparent !important;
+            color: white !important;
+            text-align: center !important;
+            .item-inner{
+                border-bottom: none !important;
+            }
+        }
+    }
 }
