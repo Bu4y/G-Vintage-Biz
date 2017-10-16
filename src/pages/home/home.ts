@@ -31,7 +31,8 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.orderService.getOrderByShop().then(data => {
+    let shop = JSON.parse(window.localStorage.getItem("shop"));
+    this.orderService.getOrderByShop(shop._id).then(data => {
 
       // this.homeData = data;
       this.waiting = data.waiting.length;

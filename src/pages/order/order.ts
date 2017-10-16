@@ -53,7 +53,8 @@ export class OrderPage {
   getOrder() {
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.orderService.getOrderByShop().then((data) => {
+    let shop = JSON.parse(window.localStorage.getItem("shop"));
+    this.orderService.getOrderByShop(shop._id).then((data) => {
       console.log(data);
       this.order = data;
       loading.dismiss();
