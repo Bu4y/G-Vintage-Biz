@@ -86,11 +86,16 @@ export class ProductDetailPage {
       currency: e.currency,
       promotionprice: e.promotionprice,
       percentofdiscount: e.percentofdiscount,
-      shop:  e.shop._id,
+      shop: e.shop._id,
       shippings: [],
       categories: [],
-      images: e.images
+      images: []
     };
+    e.images.forEach(element => {
+      productBind.images.push({
+        imgUrl: element
+      });
+    });
     e.categories.forEach(element => {
       productBind.categories.push(element._id);
     });
