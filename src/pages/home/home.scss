@@ -5,33 +5,25 @@ page-home {
         margin-bottom: -7px;
         min-width: 100%;
     }
-
-    
-.card {
-    margin: 12px;
-    border-radius: 2px;
-    width: calc(100% - 24px);
-    font-size: 1.4rem;
-    background: #fff;
-    
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    margin-top: 4px;
-  }
-
-  .col {
-    padding: 3px;
-   
-    width: 100%;
-  
-    -ms-flex-preferred-size: 0;
-    flex-basis: 0;
-    -webkit-box-flex: 1;
-    
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    max-width: 100%;
-  }
-
+    .card {
+        margin: 12px;
+        border-radius: 2px;
+        width: calc(100% - 24px);
+        font-size: 1.4rem;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        margin-top: 4px;
+    }
+    .col {
+        padding: 3px;
+        width: 100%;
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+    }
     .iconHome {
         background-color: #5c926e;
         border-radius: 100%;
@@ -39,10 +31,7 @@ page-home {
         height: 40px;
         color: #f4f4f4;
         padding-top: 6px;
-
-        
     }
-
     .sal {
         font-size: 13px;
         font-family: inherit;
@@ -50,15 +39,13 @@ page-home {
         color: #5f5d5d;
         font-weight: 600;
     }
-
     .THB {
         font-size: 18px;
         font-family: inherit;
         line-height: normal;
         color: #a33e37;
         font-weight: 700;
-      }
-
+    }
     .col {
         /* padding: 5px; */
         position: relative;
@@ -84,7 +71,13 @@ page-home {
             }
         }
     }
-    .iconHome{
+    .iconHome {
         font-size: 30px;
+    }
+    #pcate {
+        white-space: nowrap;
+        width: 8em;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
