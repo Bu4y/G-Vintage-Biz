@@ -86,9 +86,7 @@ export class ProductDetailPage {
       currency: e.currency,
       promotionprice: e.promotionprice,
       percentofdiscount: e.percentofdiscount,
-      shop: {
-        _id: e.shop._id
-      },
+      shop:  e.shop._id,
       shippings: [],
       categories: [],
       images: e.images
