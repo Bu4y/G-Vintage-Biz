@@ -2,7 +2,7 @@ import { TabsPage } from '../tabs/tabs';
 import { HomePage } from './../home/home';
 import { RegisterPage } from './../register/register';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { AuthenService, SignupModel, SigninModel } from "@ngcommerce/core";
 import { OneSignal } from '@ionic-native/onesignal';
@@ -28,7 +28,8 @@ export class LoginPage {
     public authenService: AuthenService,
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController,
-    public oneSignal: OneSignal
+    public oneSignal: OneSignal,
+    public platform: Platform
   ) {
   }
 
@@ -44,11 +45,12 @@ export class LoginPage {
     this.authenService.signIn(this.credential).then(data => {
       window.localStorage.setItem('jjuserbuyer', JSON.stringify(data));
 
+      if (this.platform.is('cordova')) {
+        this.oneSignal.getIds().then((data) => {
+          this.authenService.pushNotificationUser({ id: data.userId });
+        });
+      }
 
-      this.oneSignal.getIds().then((data) => {
-        this.authenService.pushNotificationUser({ id: data.userId });
-      });
-      
       this.navCtrl.push(TabsPage);
       loading.dismiss();
       this.viewCtrl.dismiss();
