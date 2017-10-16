@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { LoadingController, NavController, Platform } from 'ionic-angular';
-import { OrderModel, OrderService } from "@ngcommerce/core";
+import { OrderModel, OrderService, ShopModel } from "@ngcommerce/core";
 import { Chart } from 'chart.js';
 
 @Component({
@@ -23,6 +23,7 @@ export class HomePage {
   doughnutChart: any;
   lineChart: any;
   user: any;
+  shop = {} as ShopModel;
   constructor(public navCtrl: NavController, public orderService: OrderService, public loadingCtrl: LoadingController, ) {
   }
   ionViewWillEnter() {
@@ -32,6 +33,7 @@ export class HomePage {
     let loading = this.loadingCtrl.create();
     loading.present();
     let shop = JSON.parse(window.localStorage.getItem("shop"));
+    this.shop = shop;
     this.orderService.getOrderByShop(shop._id).then(data => {
 
       // this.homeData = data;
@@ -102,12 +104,12 @@ export class HomePage {
       });
       loading.dismiss();
 
-    },err=>{
+    }, err => {
       loading.dismiss();
       alert(JSON.parse(err._body).message);
     })
   }
-  
+
 
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);

@@ -1,16 +1,24 @@
 <ion-header>
   <ion-navbar color="header-cs">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="md-list"></ion-icon>
+    </button>
     <ion-title>
       Home
     </ion-title>
+    <ion-item>
+      <ion-avatar item-end>
+        <img src="{{ shop.image }}">
+      </ion-avatar>
+    </ion-item>
   </ion-navbar>
 </ion-header>
 
 <ion-content no-padding>
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
-        </ion-refresher-content>
-      </ion-refresher>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-row no-padding>
     <ion-col col-12>
       <img class="font-jjgreen" src="./assets/image/x1.png">
