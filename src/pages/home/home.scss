@@ -2,9 +2,35 @@ page-home {
     .font-jjgreen {
         width: 100vh !important;
         height: 12vh !important;
-        margin-bottom: -10px;
+        margin-bottom: -7px;
         min-width: 100%;
     }
+
+    
+.card {
+    margin: 12px;
+    border-radius: 2px;
+    width: calc(100% - 24px);
+    font-size: 1.4rem;
+    background: #fff;
+    
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    margin-top: 4px;
+  }
+
+  .col {
+    padding: 3px;
+   
+    width: 100%;
+  
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
 
     .iconHome {
         background-color: #5c926e;
@@ -18,7 +44,7 @@ page-home {
     }
 
     .sal {
-        font-size: 14px;
+        font-size: 13px;
         font-family: inherit;
         line-height: normal;
         color: #5f5d5d;
