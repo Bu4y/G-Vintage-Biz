@@ -112,5 +112,8 @@ export class CreatProductPage {
     this.viewCtrl.dismiss(e);
     // console.log(e);
   }
+  cancelDissmis(e) {
+    this.viewCtrl.dismiss();
+  }
 
 }
