@@ -1,12 +1,37 @@
 page-home {
     .font-jjgreen {
-        
         width: 100vh !important;
         height: 12vh !important;
-        margin-bottom:-10px;
+        margin-bottom: -10px;
         min-width: 100%;
+    }
+
+    .iconHome {
+        background-color: #5c926e;
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        color: #f4f4f4;
+        padding-top: 6px;
+
         
     }
+
+    .sal {
+        font-size: 14px;
+        font-family: inherit;
+        line-height: normal;
+        color: #5f5d5d;
+        font-weight: 600;
+    }
+
+    .THB {
+        font-size: 18px;
+        font-family: inherit;
+        line-height: normal;
+        color: #a33e37;
+        font-weight: 700;
+      }
 
     .col {
         /* padding: 5px; */
@@ -22,16 +47,18 @@ page-home {
         -ms-flex-positive: 1;
         /* flex-grow: 1; */
         /* max-width: 100%; */
-      }
-      ion-navbar{
-        ion-item{   
+    }
+    ion-navbar {
+        ion-item {
             background-color: transparent !important;
             color: white !important;
             text-align: center !important;
-            .item-inner{
+            .item-inner {
                 border-bottom: none !important;
             }
         }
-      }
-
+    }
+    .iconHome{
+        font-size: 30px;
+    }
 }

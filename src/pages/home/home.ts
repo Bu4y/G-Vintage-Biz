@@ -91,10 +91,10 @@ export class HomePage {
             labels: ["waiting", "accept", "sent", "return"],
             datasets: [
               {
-                label: "My Orders",
+                label: "",
                 fill: false,
                 lineTension: 0.1,
-                backgroundColor: "#bc8856",
+                backgroundColor: "#ffffff",
                 borderColor: "#7f3f00",
                 borderCapStyle: 'butt',
                 borderDash: [],
