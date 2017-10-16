@@ -35,10 +35,7 @@ export class NotificationPage {
     let leftMenu = this.menuController.get('left');
     if (leftMenu) {
       leftMenu.ionClose.subscribe(() => {
-        let loading = this.loadingCtrl.create();
-        loading.present();
         this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        loading.dismiss();
       });
     }
   }

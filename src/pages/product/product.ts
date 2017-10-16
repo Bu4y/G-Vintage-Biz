@@ -1,7 +1,7 @@
 import { CreatProductPage } from '../creat-product/creat-product';
 import { ProductDetailPage } from './../product-detail/product-detail';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController, ModalController, App } from 'ionic-angular';
 import { CorService, ProductListModel, ProductService, ShopModel } from "@ngcommerce/core";
 
 /**
@@ -29,7 +29,8 @@ export class ProductPage {
     public menuController: MenuController,
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public app: App
   ) {
   }
 
@@ -48,10 +49,13 @@ export class ProductPage {
 
     if (leftMenu) {
       leftMenu.ionClose.subscribe(() => {
-        this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        if (this.shop) {
-          this.getProduct(this.shop);
-        }
+        let currentPage = this.app.getActiveNav().getViews()[0].name;
+        if (currentPage === 'ProductPage') {
+          this.shop = JSON.parse(window.localStorage.getItem('shop'));
+          if (this.shop) {
+            this.getProduct(this.shop);
+          }
+        };
       });
     }
   }
