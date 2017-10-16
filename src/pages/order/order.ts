@@ -1,6 +1,6 @@
 import { Loading } from 'ionic-angular/es2015';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams, MenuController, App } from 'ionic-angular';
 import { CorService, OrderModel, OrderService, ItemByOrderByShopModel, ShopModel } from "@ngcommerce/core";
 import { OrderDetailPage } from '../order-detail/order-detail';
 
@@ -39,7 +39,14 @@ export class OrderPage {
     }
   ];
   shop = {} as ShopModel;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public orderService: OrderService, public loadingCtrl: LoadingController, public menuController: MenuController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public orderService: OrderService,
+    public loadingCtrl: LoadingController,
+    public menuController: MenuController,
+    public app: App
+  ) {
     this.channel = 1;
   }
 
@@ -85,10 +92,13 @@ export class OrderPage {
     let leftMenu = this.menuController.get('left');
     if (leftMenu) {
       leftMenu.ionClose.subscribe(() => {
-        this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        if (this.shop) {
-          this.getOrder(this.shop);
-        }
+        let currentPage = this.app.getActiveNav().getViews()[0].name;
+        if (currentPage === 'OrderPage') {
+          this.shop = JSON.parse(window.localStorage.getItem('shop'));
+          if (this.shop) {
+            this.getOrder(this.shop);
+          }
+        };
       });
     }
   }
