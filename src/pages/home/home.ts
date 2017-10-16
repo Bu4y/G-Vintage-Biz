@@ -119,6 +119,9 @@ export class HomePage {
                 spanGaps: false,
               }
             ]
+          },
+          options: {
+            legend: { display: false }
           }
 
         });
