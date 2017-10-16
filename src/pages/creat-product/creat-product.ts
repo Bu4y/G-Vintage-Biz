@@ -30,7 +30,7 @@ export class CreatProductPage {
   shops: Array<ShopModel> = [];
   categories: Array<CategoryModel>;
   shippings: Array<ShippingModel>;
-  currency: Array<CurrencyModel>;
+  currency: Array<CurrencyModel> = [];
   e = {} as ProductModel;
   showForm: Boolean = false;
   constructor(

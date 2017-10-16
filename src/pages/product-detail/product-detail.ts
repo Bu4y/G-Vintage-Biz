@@ -73,15 +73,17 @@ export class ProductDetailPage {
     alert.present();
   }
   updateProduct(e) {
+    console.log(e);
     // e = {} as ProductModel;
     let productBind = {
       _id: e._id,
       name: e.name,
       detail: e.detail,
       price: e.price,
-      currency: {
-        _id: e.currency._id
-      },
+      // currency: {
+      //   _id: e.currency._id
+      // },
+      currency: e.currency,
       promotionprice: e.promotionprice,
       percentofdiscount: e.percentofdiscount,
       shop: {

@@ -23,4 +23,20 @@ page-home {
         /* flex-grow: 1; */
         /* max-width: 100%; */
       }
+      ion-navbar{
+        ion-item{   
+            background-color: transparent !important;
+            color: white !important;
+            .item-inner{
+                border-bottom: none !important;
+            }
+            
+        }
+        ion-title{
+            .toolbar-title-md {
+                padding: 0 90px !important;
+            }
+        }
+      }
+
 }
