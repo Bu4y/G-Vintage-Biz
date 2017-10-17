@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
-import { AuthenService, SignupModel  } from "@ngcommerce/core";
+import { AuthenService  } from "@ngcommerce/core";
 
 /**
  * Generated class for the RegisterPage page.

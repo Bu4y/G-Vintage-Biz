@@ -1,7 +1,7 @@
 import { LoginPage } from '../pages/login/login';
 import { Component } from '@angular/core';
 import { OneSignal } from '@ionic-native/onesignal';
-import { Platform, MenuController, LoadingController } from 'ionic-angular';
+import { Platform, MenuController, LoadingController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ShopService, UserModel } from '@ngcommerce/core';
@@ -21,7 +21,9 @@ export class MyApp {
     splashScreen: SplashScreen,
     public menuController: MenuController,
     public loadingCtrl: LoadingController,
-    private oneSignal: OneSignal
+    private oneSignal: OneSignal,
+    public events: Events
+
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -42,7 +44,9 @@ export class MyApp {
   initOnesignal() {
     this.oneSignal.startInit('fdfae3dc-e634-47f4-b959-f04e60f4613b', '464766391164');
 
-    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert).subscribe(() => {
+      this.events.publish('notification:received');
+    });
 
     this.oneSignal.handleNotificationReceived().subscribe((onReceived) => {
       // do something when notification is received
@@ -84,8 +88,7 @@ export class MyApp {
 
   selectShop(item) {
     window.localStorage.setItem('shop', JSON.stringify(item));
-    let shop = window.localStorage.getItem('shop');
-    console.log(shop);
+    this.events.publish('notification:received'); // ขอใช้ Function เดียวกับ notification ครับ
   }
 
   private workaroundSideMenu() {

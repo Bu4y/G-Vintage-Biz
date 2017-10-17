@@ -1,7 +1,7 @@
 import { CreateshopPage } from '../createshop/createshop';
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, ModalController, NavController, NavParams } from 'ionic-angular';
-import { ShopService, ShopModel, ShopListModel } from '@ngcommerce/core';
+import { ShopService, ShopListModel } from '@ngcommerce/core';
 
 
 /**
@@ -20,8 +20,8 @@ export class ListshopPage {
   shop = {} as ShopListModel;
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams, public shopService: ShopService, public modalControl: ModalController,public loadingCtrl: LoadingController) {
-   
+    public navParams: NavParams, public shopService: ShopService, public modalControl: ModalController, public loadingCtrl: LoadingController) {
+
   }
 
   ionViewWillEnter() {

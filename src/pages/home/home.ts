@@ -1,7 +1,7 @@
 import { LoginPage } from './../login/login';
 import { Component, ViewChild } from '@angular/core';
-import { LoadingController, NavController, Platform, MenuController, App } from 'ionic-angular';
-import { HomeService, ShopModel, HomeSellerModel } from "@ngcommerce/core";
+import { LoadingController, NavController, App, Events } from 'ionic-angular';
+import { HomeService, ShopModel } from "@ngcommerce/core";
 import { Chart } from 'chart.js';
 
 @Component({
@@ -39,15 +39,24 @@ export class HomePage {
     public navCtrl: NavController,
     public homeService: HomeService,
     public loadingCtrl: LoadingController,
-    public menuController: MenuController,
-    public app: App
+    public app: App,
+    public events: Events
   ) {
+
+    events.subscribe('notification:received', () => {
+
+      let currentPage = this.app.getActiveNav().getViews()[0].name;
+      if (currentPage === 'HomePage') {
+        this.shop = JSON.parse(window.localStorage.getItem('shop'));
+        if (this.shop) {
+          this.getOrder(this.shop);
+        }
+      }
+
+    });
 
   }
   ionViewWillEnter() {
-    // console.log(this.shop);
-    // this.shop
-    this.workaroundSideMenu();
     console.log('ionViewDidLoad HomePage');
 
     let shop = JSON.parse(window.localStorage.getItem("shop"));
@@ -155,24 +164,6 @@ export class HomePage {
       console.log('Async operation has ended');
       refresher.complete();
     }, 2000);
-  }
-
-  private workaroundSideMenu() {
-    let leftMenu = this.menuController.get('left');
-    if (leftMenu) {
-      leftMenu.ionClose.subscribe(() => {
-        let loading = this.loadingCtrl.create();
-        loading.present();
-        let currentPage = this.app.getActiveNav().getViews()[0].name;
-        if (currentPage === 'HomePage') {
-          this.shop = JSON.parse(window.localStorage.getItem('shop'));
-          if (this.shop) {
-            this.getOrder(this.shop);
-          }
-        }
-        loading.dismiss();
-      });
-    }
   }
 
 }

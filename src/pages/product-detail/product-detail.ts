@@ -1,7 +1,7 @@
 import { CreatProductPage } from '../creat-product/creat-product';
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
-import { CorService, ProductModel, ProductService } from "@ngcommerce/core";
+import { ProductModel, ProductService } from "@ngcommerce/core";
 /**
  * Generated class for the ProductDetailPage page.
  *
