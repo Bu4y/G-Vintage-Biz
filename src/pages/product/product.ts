@@ -1,3 +1,4 @@
+import { LoginPage } from './../login/login';
 import { CreatProductPage } from '../creat-product/creat-product';
 import { ProductDetailPage } from './../product-detail/product-detail';
 import { Component } from '@angular/core';
@@ -70,7 +71,8 @@ export class ProductPage {
       this.product = data;
     }).catch(e => {
       loading.dismiss();
-      alert(e);
+      // alert(e);
+      this.app.getRootNav().setRoot(LoginPage);      
     })
   }
 

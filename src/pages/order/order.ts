@@ -1,3 +1,4 @@
+import { LoginPage } from './../login/login';
 import { Loading } from 'ionic-angular/es2015';
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, MenuController, App } from 'ionic-angular';
@@ -71,7 +72,8 @@ export class OrderPage {
       loading.dismiss();
     }, (err) => {
       loading.dismiss();
-      alert(JSON.parse(err._body).message);
+      // alert(JSON.parse(err._body).message);
+      this.app.getRootNav().setRoot(LoginPage);      
     });
   }
 
