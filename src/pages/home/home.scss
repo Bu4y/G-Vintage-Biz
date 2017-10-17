@@ -80,4 +80,12 @@ page-home {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    img {
+        max-width: 100%;
+        border: 0;
+        width: inherit;
+        
+      }
+      
 }
