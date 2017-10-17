@@ -1,7 +1,7 @@
 import { CreatProductPage } from '../creat-product/creat-product';
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
-import { ProductModel, ProductService } from "@ngcommerce/core";
+import { CorService, ProductModel, ProductService } from "@ngcommerce/core";
 /**
  * Generated class for the ProductDetailPage page.
  *
@@ -16,7 +16,6 @@ import { ProductModel, ProductService } from "@ngcommerce/core";
 })
 export class ProductDetailPage {
   items = {} as ProductModel;
-  chkformimg = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public productService: ProductService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public modalCtrl: ModalController, ) {
     {
@@ -104,7 +103,7 @@ export class ProductDetailPage {
       productBind.shippings.push(element._id);
     });
     console.log(productBind);
-    let productModal = this.modalCtrl.create(CreatProductPage, { 'productBind': productBind, 'keys': this.chkformimg });
+    let productModal = this.modalCtrl.create(CreatProductPage, productBind);
     productModal.onDidDismiss(data => {
       if (data && data.name && data.name !== undefined) {
         let loading = this.loadingCtrl.create();

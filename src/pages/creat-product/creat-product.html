@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar color="header-cs">
-    <ion-title>{{e._id?'Edit Product':'Create Product'}}</ion-title>
+  <ion-navbar color="header-cs"> 
+    <ion-title>{{e && e._id ? 'Edit Product' : 'Create Product'}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="cancelDissmis()">
         <ion-icon name="close-circle"></ion-icon>
