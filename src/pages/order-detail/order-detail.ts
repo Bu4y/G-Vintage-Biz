@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
-import { CorService, OrderModel, OrderService } from "@ngcommerce/core";
+import { OrderService } from "@ngcommerce/core";
 /**
  * Generated class for the OrderDetailPage page.
  *

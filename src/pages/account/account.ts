@@ -1,7 +1,6 @@
 import { ShopModel } from '@ngcommerce/core';
 import { LoginPage } from './../login/login';
 import { ListshopPage } from '../listshop/listshop';
-import { AuthenService } from '@ngcommerce/core';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, MenuController, LoadingController } from 'ionic-angular';
 import { EditProfilePage } from '../edit-profile/edit-profile';

@@ -1,8 +1,7 @@
 import { LoginPage } from './../login/login';
-import { Loading } from 'ionic-angular/es2015';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams, MenuController, App } from 'ionic-angular';
-import { CorService, OrderModel, OrderService, ItemByOrderByShopModel, ShopModel } from "@ngcommerce/core";
+import { IonicPage, LoadingController, NavController, NavParams, MenuController, App, Events } from 'ionic-angular';
+import { OrderService, ItemByOrderByShopModel, ShopModel } from "@ngcommerce/core";
 import { OrderDetailPage } from '../order-detail/order-detail';
 
 /**
@@ -46,13 +45,22 @@ export class OrderPage {
     public orderService: OrderService,
     public loadingCtrl: LoadingController,
     public menuController: MenuController,
-    public app: App
+    public app: App,
+    public events: Events
+
   ) {
     this.channel = 1;
-  }
+    events.subscribe('notification:received', () => {
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderPage');
+      let currentPage = this.app.getActiveNav().getViews()[0].name;
+      if (currentPage === 'OrderPage') {
+        this.shop = JSON.parse(window.localStorage.getItem('shop'));
+        if (this.shop) {
+          this.getOrder(this.shop);
+        }
+      }
+
+    });
   }
 
   ionViewWillEnter() {
@@ -60,7 +68,6 @@ export class OrderPage {
     if (this.shop) {
       this.getOrder(this.shop);
     }
-    this.workaroundSideMenu();
   }
 
   getOrder(shop) {
@@ -73,7 +80,7 @@ export class OrderPage {
     }, (err) => {
       loading.dismiss();
       // alert(JSON.parse(err._body).message);
-      this.app.getRootNav().setRoot(LoginPage);      
+      this.app.getRootNav().setRoot(LoginPage);
     });
   }
 
@@ -90,19 +97,6 @@ export class OrderPage {
       refresher.complete();
     }, 2000);
   }
-  private workaroundSideMenu() {
-    let leftMenu = this.menuController.get('left');
-    if (leftMenu) {
-      leftMenu.ionClose.subscribe(() => {
-        let currentPage = this.app.getActiveNav().getViews()[0].name;
-        if (currentPage === 'OrderPage') {
-          this.shop = JSON.parse(window.localStorage.getItem('shop'));
-          if (this.shop) {
-            this.getOrder(this.shop);
-          }
-        };
-      });
-    }
-  }
+
 }
 
