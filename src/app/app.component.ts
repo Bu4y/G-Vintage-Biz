@@ -44,12 +44,11 @@ export class MyApp {
   initOnesignal() {
     this.oneSignal.startInit('fdfae3dc-e634-47f4-b959-f04e60f4613b', '464766391164');
 
-    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert).subscribe(() => {
-      this.events.publish('notification:received');
-    });
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
 
     this.oneSignal.handleNotificationReceived().subscribe((onReceived) => {
       // do something when notification is received
+      this.events.publish('notification:received');
       let notifications = window.localStorage.getItem('sellerNotification') ? JSON.parse(window.localStorage.getItem('sellerNotification')) : [];
 
       notifications.unshift({
