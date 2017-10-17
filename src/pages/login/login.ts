@@ -31,14 +31,14 @@ export class LoginPage {
     public platform: Platform
   ) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
   user = {} as SignupModel;
   credential: any = {};
 
   login() {
+
+    window.localStorage.removeItem('shop');
+    window.localStorage.removeItem('jjuserbuyer');
+    
     let loading = this.loadingCtrl.create();
     loading.present();
     this.authenService.signIn(this.credential).then(data => {
