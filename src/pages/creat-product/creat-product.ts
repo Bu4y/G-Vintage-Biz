@@ -44,14 +44,18 @@ export class CreatProductPage {
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController
   ) {
+    let shopselec = JSON.parse(window.localStorage.getItem('shop'));
+    this.shops = [shopselec];
+
     this.e = this.navParams.data;
+    this.e.shop = shopselec._id;
     this.chkformimg = this.navParams.get('keys');
     // console.log(this.e);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreatProductPage');
-    this.loadShops();
+    this.loadCate();
   }
   loadShops() {
     let loading = this.loadingCtrl.create();
