@@ -16,6 +16,7 @@ import { CorService, ProductModel, ProductService } from "@ngcommerce/core";
 })
 export class ProductDetailPage {
   items = {} as ProductModel;
+  chkformimg = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public productService: ProductService, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public modalCtrl: ModalController, ) {
     {
@@ -89,13 +90,13 @@ export class ProductDetailPage {
       shop: e.shop._id,
       shippings: [],
       categories: [],
-      images: []
+      images: e.images
     };
-    e.images.forEach(element => {
-      productBind.images.push({
-        imgUrl: element
-      });
-    });
+    // e.images.forEach(element => {
+    //   productBind.images.push({
+    //     imgUrl: element
+    //   });
+    // });
     e.categories.forEach(element => {
       productBind.categories.push(element._id);
     });
@@ -103,7 +104,7 @@ export class ProductDetailPage {
       productBind.shippings.push(element._id);
     });
     console.log(productBind);
-    let productModal = this.modalCtrl.create(CreatProductPage, productBind);
+    let productModal = this.modalCtrl.create(CreatProductPage, { 'productBind': productBind, 'keys': this.chkformimg });
     productModal.onDidDismiss(data => {
       if (data && data.name && data.name !== undefined) {
         let loading = this.loadingCtrl.create();

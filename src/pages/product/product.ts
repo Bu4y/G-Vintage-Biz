@@ -22,7 +22,7 @@ export class ProductPage {
   product = {} as ProductListModel;
   loadData: Boolean = false;
   shop = {} as ShopModel;
-
+  chkformimg = true;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -72,7 +72,7 @@ export class ProductPage {
     }).catch(e => {
       loading.dismiss();
       // alert(e);
-      this.app.getRootNav().setRoot(LoginPage);      
+      this.app.getRootNav().setRoot(LoginPage);
     })
   }
 
@@ -80,7 +80,7 @@ export class ProductPage {
     this.navCtrl.push(ProductDetailPage, items);
   }
   addProductModal() {
-    let productModal = this.modalCtrl.create(CreatProductPage);
+    let productModal = this.modalCtrl.create(CreatProductPage, { 'keys': this.chkformimg });
     productModal.onDidDismiss(data => {
       if (data && data.name && data.name !== undefined) {
         let loading = this.loadingCtrl.create();

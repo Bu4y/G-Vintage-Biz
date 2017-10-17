@@ -32,6 +32,7 @@ export class CreatProductPage {
   shippings: Array<ShippingModel>;
   currency: Array<CurrencyModel> = [];
   e = {} as ProductModel;
+  chkformimg: Boolean;
   showForm: Boolean = false;
   constructor(
     public navCtrl: NavController,
@@ -43,7 +44,8 @@ export class CreatProductPage {
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController
   ) {
-    this.e = this.navParams.data;
+    this.e = this.navParams.get('productBind');
+    this.chkformimg = this.navParams.get('keys');
     // console.log(this.e);
   }
 
