@@ -44,14 +44,19 @@ export class HomePage {
   ) {
 
     events.subscribe('notification:received', () => {
-
-      let currentPage = this.app.getActiveNav().getViews()[0].name;
-      if (currentPage === 'HomePage') {
-        this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        if (this.shop) {
-          this.getOrder(this.shop);
-        }
+      let shop = JSON.parse(window.localStorage.getItem("shop"));
+      this.shop = shop;
+      if (this.shop) {
+        this.getOrder(this.shop);
       }
+
+      // let currentPage = this.app.getActiveNav().getViews()[0].name;
+      // if (currentPage === 'HomePage') {
+      //   this.shop = JSON.parse(window.localStorage.getItem('shop'));
+      //   if (this.shop) {
+      //     this.getOrder(this.shop);
+      //   }
+      // }
 
     });
 

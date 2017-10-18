@@ -2,7 +2,7 @@ import { ShopModel } from '@ngcommerce/core';
 import { LoginPage } from './../login/login';
 import { ListshopPage } from '../listshop/listshop';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, MenuController, LoadingController } from 'ionic-angular';
+import { App, IonicPage, LoadingController, MenuController, ModalController, NavController, NavParams } from 'ionic-angular';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 /**
  * Generated class for the AccountPage page.
@@ -19,7 +19,7 @@ import { EditProfilePage } from '../edit-profile/edit-profile';
 export class AccountPage {
   user: any;
   shop = {} as ShopModel;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalControl: ModalController, public menuController: MenuController, public loadingCtrl: LoadingController) {
+  constructor(public app: App, public navCtrl: NavController, public navParams: NavParams, public modalControl: ModalController, public menuController: MenuController, public loadingCtrl: LoadingController) {
     this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
   }
 
@@ -30,9 +30,14 @@ export class AccountPage {
     console.log('ionViewDidLoad AccountPage');
   }
 
-  logout() {
+  logout(e) {
     window.localStorage.removeItem('jjuserbuyer');
-    this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
+
+    this.app.getRootNav().popToRoot();
+    setTimeout(() => {
+      this.app.getRootNav().push(LoginPage);
+    }, 100);
+
   }
   createshop(e) {
     this.navCtrl.push(ListshopPage);
