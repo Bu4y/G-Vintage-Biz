@@ -33,17 +33,21 @@ export class ProductPage {
     public loadingCtrl: LoadingController,
     public app: App,
     public events: Events
-    
+
   ) {
     events.subscribe('notification:received', () => {
-
-      let currentPage = this.app.getActiveNav().getViews()[0].name;
-      if (currentPage === 'ProductPage') {
-        this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        if (this.shop) {
-          this.getProduct(this.shop);
-        }
+      this.shop = JSON.parse(window.localStorage.getItem('shop'));
+      if (this.shop && this.shop._id) {
+        this.getProduct(this.shop);
       }
+
+      // let currentPage = this.app.getActiveNav().getViews()[0].name;
+      // if (currentPage === 'ProductPage') {
+      //   this.shop = JSON.parse(window.localStorage.getItem('shop'));
+      //   if (this.shop) {
+      //     this.getProduct(this.shop);
+      //   }
+      // }
 
     });
   }

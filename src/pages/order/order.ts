@@ -51,14 +51,18 @@ export class OrderPage {
   ) {
     this.channel = 1;
     events.subscribe('notification:received', () => {
-
-      let currentPage = this.app.getActiveNav().getViews()[0].name;
-      if (currentPage === 'OrderPage') {
-        this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        if (this.shop) {
-          this.getOrder(this.shop);
-        }
+      this.shop = JSON.parse(window.localStorage.getItem('shop'));
+      if (this.shop) {
+        this.getOrder(this.shop);
       }
+
+      // let currentPage = this.app.getActiveNav().getViews()[0].name;
+      // if (currentPage === 'OrderPage') {
+      //   this.shop = JSON.parse(window.localStorage.getItem('shop'));
+      //   if (this.shop) {
+      //     this.getOrder(this.shop);
+      //   }
+      // }
 
     });
   }
