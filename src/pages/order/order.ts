@@ -1,8 +1,9 @@
 import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams, MenuController, App, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, App, Events } from 'ionic-angular';
 import { OrderService, ItemByOrderByShopModel, ShopModel } from "@ngcommerce/core";
 import { OrderDetailPage } from '../order-detail/order-detail';
+import { LoadingProvider } from '../../providers/loading/loading';
 
 /**
  * Generated class for the OrderPage page.
@@ -43,7 +44,7 @@ export class OrderPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public orderService: OrderService,
-    public loadingCtrl: LoadingController,
+    public loadingCtrl: LoadingProvider,
     public menuController: MenuController,
     public app: App,
     public events: Events
@@ -52,17 +53,17 @@ export class OrderPage {
     this.channel = 1;
     events.subscribe('notification:received', () => {
       this.shop = JSON.parse(window.localStorage.getItem('shop'));
-      if (this.shop) {
-        this.getOrder(this.shop);
-      }
-
-      // let currentPage = this.app.getActiveNav().getViews()[0].name;
-      // if (currentPage === 'OrderPage') {
-      //   this.shop = JSON.parse(window.localStorage.getItem('shop'));
-      //   if (this.shop) {
-      //     this.getOrder(this.shop);
-      //   }
+      // if (this.shop) {
+      //   this.getOrder(this.shop);
       // }
+
+      let currentPage = this.app.getActiveNav().getViews()[0].name;
+      if (currentPage === 'OrderPage') {
+        this.shop = JSON.parse(window.localStorage.getItem('shop'));
+        if (this.shop) {
+          this.getOrder(this.shop);
+        }
+      }
 
     });
   }
@@ -75,14 +76,13 @@ export class OrderPage {
   }
 
   getOrder(shop) {
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    this.loadingCtrl.onLoading();
     this.orderService.getOrderByShop(shop._id).then((data) => {
       console.log(data);
       this.order = data;
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
     }, (err) => {
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
       // alert(JSON.parse(err._body).message);
       this.app.getRootNav().setRoot(LoginPage);
     });

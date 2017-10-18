@@ -1,8 +1,8 @@
 import { CreateshopPage } from '../createshop/createshop';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, ModalController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { ShopService, ShopListModel } from '@ngcommerce/core';
-
+import { LoadingProvider } from '../../providers/loading/loading';
 
 /**
  * Generated class for the ListshopPage page.
@@ -20,7 +20,7 @@ export class ListshopPage {
   shop = {} as ShopListModel;
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams, public shopService: ShopService, public modalControl: ModalController, public loadingCtrl: LoadingController) {
+    public navParams: NavParams, public shopService: ShopService, public modalControl: ModalController, public loadingCtrl: LoadingProvider) {
 
   }
 
@@ -37,14 +37,13 @@ export class ListshopPage {
     let shopModal = this.modalControl.create(CreateshopPage);
     shopModal.onDidDismiss(data => {
       if (data && data.name) {
-        let loading = this.loadingCtrl.create();
-        loading.present();
+        this.loadingCtrl.onLoading();
         this.shopService.createShop(data)
           .then((resp) => {
-            loading.dismiss();
+            this.loadingCtrl.dismiss();
             this.getShop();
           }, (err) => {
-            loading.dismiss();
+            this.loadingCtrl.dismiss();
             alert(JSON.parse(err._body).message);
           });
       }

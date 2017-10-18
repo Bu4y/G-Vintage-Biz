@@ -2,9 +2,9 @@ import { LoginPage } from './../login/login';
 import { CreatProductPage } from '../creat-product/creat-product';
 import { ProductDetailPage } from './../product-detail/product-detail';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController, ModalController, App, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController, ModalController, App, Events } from 'ionic-angular';
 import { ProductListModel, ProductService, ShopModel } from "@ngcommerce/core";
-
+import { LoadingProvider } from '../../providers/loading/loading';
 /**
  * Generated class for the ProductPage page.
  *
@@ -30,24 +30,24 @@ export class ProductPage {
     public menuController: MenuController,
     public alertCtrl: AlertController,
     public modalCtrl: ModalController,
-    public loadingCtrl: LoadingController,
+    public loadingCtrl: LoadingProvider,
     public app: App,
     public events: Events
 
   ) {
     events.subscribe('notification:received', () => {
       this.shop = JSON.parse(window.localStorage.getItem('shop'));
-      if (this.shop && this.shop._id) {
-        this.getProduct(this.shop);
-      }
-
-      // let currentPage = this.app.getActiveNav().getViews()[0].name;
-      // if (currentPage === 'ProductPage') {
-      //   this.shop = JSON.parse(window.localStorage.getItem('shop'));
-      //   if (this.shop) {
-      //     this.getProduct(this.shop);
-      //   }
+      // if (this.shop && this.shop._id) {
+      //   this.getProduct(this.shop);
       // }
+
+      let currentPage = this.app.getActiveNav().getViews()[0].name;
+      if (currentPage === 'ProductPage') {
+        this.shop = JSON.parse(window.localStorage.getItem('shop'));
+        if (this.shop) {
+          this.getProduct(this.shop);
+        }
+      }
 
     });
   }
@@ -63,14 +63,13 @@ export class ProductPage {
 
   getProduct(shop) {
     this.product = {} as ProductListModel;
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    this.loadingCtrl.onLoading();
     this.productService.getProductListByShop(shop._id).then(data => {
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
       console.log(data);
       this.product = data;
     }).catch(e => {
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
       // alert(e);
       this.app.getRootNav().setRoot(LoginPage);
     })
@@ -83,13 +82,12 @@ export class ProductPage {
     let productModal = this.modalCtrl.create(CreatProductPage, { 'keys': this.chkformimg });
     productModal.onDidDismiss(data => {
       if (data && data.name && data.name !== undefined) {
-        let loading = this.loadingCtrl.create();
-        loading.present();
+        this.loadingCtrl.onLoading();
         this.productService.createProduct(data).then((resq) => {
-          loading.dismiss();
+          this.loadingCtrl.dismiss();
           this.getProduct(this.shop);
         }, (err) => {
-          loading.dismiss();
+          this.loadingCtrl.dismiss();
           alert(JSON.parse(err._body).message);
         });
       }

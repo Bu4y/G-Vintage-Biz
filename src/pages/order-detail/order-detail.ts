@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OrderService } from "@ngcommerce/core";
+import { LoadingProvider } from '../../providers/loading/loading';
 /**
  * Generated class for the OrderDetailPage page.
  *
@@ -16,11 +17,10 @@ import { OrderService } from "@ngcommerce/core";
 export class OrderDetailPage {
   items;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public orderService: OrderService, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
-    let loading = this.loadingCtrl.create();
-    loading.present();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public orderService: OrderService, public alertCtrl: AlertController, public loadingCtrl: LoadingProvider) {
+    this.loadingCtrl.onLoading();
     this.items = this.navParams.data;
-    loading.dismiss();
+    this.loadingCtrl.dismiss();
     console.log(this.items);
   }
 
@@ -47,13 +47,12 @@ export class OrderDetailPage {
         {
           text: 'Submit',
           handler: data => {
-            let loading = this.loadingCtrl.create();
-            loading.present();
+            this.loadingCtrl.onLoading();
             this.orderService.updateItemToSent(order_id, item_id).then((data) => {
-              loading.dismiss();
+              this.loadingCtrl.dismiss();
               this.navCtrl.pop();
             }, (err) => {
-              loading.dismiss();
+              this.loadingCtrl.dismiss();
               alert(JSON.parse(err._body).message);
             });
           }
@@ -63,27 +62,26 @@ export class OrderDetailPage {
     prompt.present();
   }
   updateStatus(item) {
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    this.loadingCtrl.onLoading();
     if (item.status == "waiting") {
       this.orderService.updateItemToAccept(item.order_id, item.item_id).then((data) => {
-        loading.dismiss();
+        this.loadingCtrl.dismiss();
         this.navCtrl.pop();
       }, (err) => {
-        loading.dismiss();
+        this.loadingCtrl.dismiss();
         alert(JSON.parse(err._body).message);
       });
     } else if (item.status == "accept") {
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
       
       this.showPrompt(item.order_id, item.item_id);
 
     } else if (item.status == "sent") {
       this.orderService.updateItemToComplete(item.order_id, item.item_id).then((data) => {
-        loading.dismiss();
+        this.loadingCtrl.dismiss();
         this.navCtrl.pop();
       }, (err) => {
-        loading.dismiss();
+        this.loadingCtrl.dismiss();
         alert(JSON.parse(err._body).message);
       })
     } else if (item.status == "return") {
@@ -93,13 +91,12 @@ export class OrderDetailPage {
   }
 
   updateStatusReject(item) {
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    this.loadingCtrl.onLoading();
     this.orderService.updateItemToReject(item.order_id, item.item_id).then((data) => {
-      loading.dismiss();      
+      this.loadingCtrl.dismiss();     
       this.navCtrl.pop();
     }, (err) => {
-      loading.dismiss();      
+      this.loadingCtrl.dismiss();    
       alert(JSON.parse(err._body).message);
     })
 

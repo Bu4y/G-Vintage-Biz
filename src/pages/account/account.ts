@@ -2,8 +2,10 @@ import { ShopModel } from '@ngcommerce/core';
 import { LoginPage } from './../login/login';
 import { ListshopPage } from '../listshop/listshop';
 import { Component } from '@angular/core';
-import { App, IonicPage, LoadingController, MenuController, ModalController, NavController, NavParams } from 'ionic-angular';
+import { App, IonicPage, MenuController, ModalController, NavController, NavParams, Events } from 'ionic-angular';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { LoadingProvider } from '../../providers/loading/loading';
+
 /**
  * Generated class for the AccountPage page.
  *
@@ -19,7 +21,7 @@ import { EditProfilePage } from '../edit-profile/edit-profile';
 export class AccountPage {
   user: any;
   shop = {} as ShopModel;
-  constructor(public app: App, public navCtrl: NavController, public navParams: NavParams, public modalControl: ModalController, public menuController: MenuController, public loadingCtrl: LoadingController) {
+  constructor(public app: App, public navCtrl: NavController, public navParams: NavParams, public modalControl: ModalController, public menuController: MenuController, public loadingCtrl: LoadingProvider, public events: Events) {
     this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
   }
 
@@ -32,10 +34,14 @@ export class AccountPage {
 
   logout(e) {
     window.localStorage.removeItem('jjuserbuyer');
+    window.localStorage.removeItem('shop');
 
-    this.app.getRootNav().popToRoot();
+
+    this.events.unsubscribe('notification:received');
+
+    // this.app.getRootNav().popToRoot();
     setTimeout(() => {
-      this.app.getRootNav().push(LoginPage);
+      this.app.getRootNav().setRoot(LoginPage);
     }, 100);
 
   }

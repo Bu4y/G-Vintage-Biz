@@ -1,8 +1,9 @@
 import { LoginPage } from './../login/login';
 import { Component, ViewChild } from '@angular/core';
-import { LoadingController, NavController, App, Events } from 'ionic-angular';
+import { NavController, App, Events } from 'ionic-angular';
 import { HomeService, ShopModel } from "@ngcommerce/core";
 import { Chart } from 'chart.js';
+import { LoadingProvider } from '../../providers/loading/loading';
 
 @Component({
   selector: 'page-home',
@@ -38,25 +39,25 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public homeService: HomeService,
-    public loadingCtrl: LoadingController,
+    public loadingCtrl: LoadingProvider,
     public app: App,
     public events: Events
   ) {
 
     events.subscribe('notification:received', () => {
-      let shop = JSON.parse(window.localStorage.getItem("shop"));
-      this.shop = shop;
-      if (this.shop) {
-        this.getOrder(this.shop);
-      }
-
-      // let currentPage = this.app.getActiveNav().getViews()[0].name;
-      // if (currentPage === 'HomePage') {
-      //   this.shop = JSON.parse(window.localStorage.getItem('shop'));
-      //   if (this.shop) {
-      //     this.getOrder(this.shop);
-      //   }
+      // let shop = JSON.parse(window.localStorage.getItem("shop"));
+      // this.shop = shop;
+      // if (this.shop) {
+      //   this.getOrder(this.shop);
       // }
+
+      let currentPage = this.app.getActiveNav().getViews()[0].name;
+      if (currentPage === 'HomePage') {
+        this.shop = JSON.parse(window.localStorage.getItem('shop'));
+        if (this.shop) {
+          this.getOrder(this.shop);
+        }
+      }
 
     });
 
@@ -73,8 +74,7 @@ export class HomePage {
 
   getOrder(shop) {
 
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    this.loadingCtrl.onLoading();
     this.homeService.getHomeSeller(shop._id).then(data => {
 
       this.homeData = data;
@@ -177,10 +177,10 @@ export class HomePage {
 
         });
       }
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
 
     }, err => {
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
       // alert(JSON.parse(err._body).message);
       this.app.getRootNav().setRoot(LoginPage);
     })

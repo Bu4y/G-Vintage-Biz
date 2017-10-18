@@ -1,10 +1,11 @@
 import { TabsPage } from '../tabs/tabs';
 import { RegisterPage } from './../register/register';
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { AuthenService, SignupModel } from "@ngcommerce/core";
 import { OneSignal } from '@ionic-native/onesignal';
+import { LoadingProvider } from '../../providers/loading/loading';
 /**
  * Generated class for the LoginPage page.
  *
@@ -25,7 +26,7 @@ export class LoginPage {
     public navParams: NavParams,
     private fb: Facebook,
     public authenService: AuthenService,
-    public loadingCtrl: LoadingController,
+    public loadingCtrl: LoadingProvider,
     public viewCtrl: ViewController,
     public oneSignal: OneSignal,
     public platform: Platform
@@ -39,8 +40,7 @@ export class LoginPage {
     window.localStorage.removeItem('shop');
     window.localStorage.removeItem('jjuserbuyer');
     
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    this.loadingCtrl.onLoading();
     this.authenService.signIn(this.credential).then(data => {
       window.localStorage.setItem('jjuserbuyer', JSON.stringify(data));
 
@@ -51,12 +51,12 @@ export class LoginPage {
       }
 
       this.navCtrl.push(TabsPage);
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
       this.viewCtrl.dismiss();
 
       // alert(JSON.stringify(data));
     }).catch(e => {
-      loading.dismiss();
+      this.loadingCtrl.dismiss();
       alert(JSON.parse(e._body).message);
     });
   }

@@ -29,6 +29,7 @@ import { ListshopPage } from '../pages/listshop/listshop';
 import { ImagePicker } from "@ionic-native/image-picker";
 import { Base64 } from "@ionic-native/base64";
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { LoadingProvider } from '../providers/loading/loading';
 
 
 @NgModule({
@@ -68,7 +69,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
     HttpModule,
     Ionic2RatingModule,
     IonicModule.forRoot(MyApp),
-    EcommerceCoreModule.forRoot('https://greenvintage-v3.herokuapp.com/api/')
+    EcommerceCoreModule.forRoot('https://greenvintage-v2.herokuapp.com/api/')
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -97,7 +98,8 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
     OneSignal,
     ImagePicker,
     Base64,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    LoadingProvider
   ]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams ,MenuController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,MenuController} from 'ionic-angular';
 import { ShopModel } from '@ngcommerce/core';
-
+import { LoadingProvider } from '../../providers/loading/loading';
 /**
  * Generated class for the NotificationPage page.
  *
@@ -17,17 +17,16 @@ import { ShopModel } from '@ngcommerce/core';
 export class NotificationPage {
   shop = {} as ShopModel;
   notifications: Array<any> = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,public menuController: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingProvider,public menuController: MenuController) {
   }
 
   ionViewWillEnter() {
     
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    this.loadingCtrl.onLoading();
     let shop = JSON.parse(window.localStorage.getItem("shop"));
     this.shop = shop;
     this.notifications = JSON.parse(window.localStorage.getItem('sellerNotification'));
-    loading.dismiss();
+    this.loadingCtrl.dismiss();
     // alert(this.notifications);
     this.workaroundSideMenu();
   }
