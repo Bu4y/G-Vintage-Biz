@@ -151,5 +151,15 @@ page-order {
             }
         }
       }
+
+      ion-content.has-refresher > .scroll-content {
+        
+        margin-top: 50px !important;
+        margin-bottom: 49px !important;
+      }
      
+      .toolbar {
+        padding: 0px;
+        min-height: 44px;
+      }
 }
