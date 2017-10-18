@@ -120,18 +120,18 @@ export class HomePage {
                 label: "",
                 fill: false,
                 lineTension: 0.1,
-                backgroundColor: "#ffffff",
-                borderColor: "#7f3f00",
+                backgroundColor: "#ff0000",
+                borderColor: "#ff0000",
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
-                pointBorderColor: "#7f3f00",
+                pointBorderColor: "#ff0000",
                 pointBackgroundColor: "#fff",
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: "#7f3f00",
-                pointHoverBorderColor: "#7f3f00",
+                pointHoverBackgroundColor: "#ff0000",
+                pointHoverBorderColor: "#ff0000",
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
@@ -142,7 +142,32 @@ export class HomePage {
             ]
           },
           options: {
-            legend: { display: false }
+            legend: {
+              display: false,
+              labels: {
+                fontColor: 'white'
+              }
+            },
+            scales: {
+              yAxes: [{
+                gridLines: {
+                  display:false,                  
+                  color: "gray"
+                },
+                ticks: {
+                  fontColor: "white",
+                }
+              }],
+              xAxes: [{
+                gridLines: {
+                  display:false,
+                  color: "gray"
+                },
+                ticks: {
+                  fontColor: "white",
+                }
+              }]
+            }
           }
 
         });
