@@ -26,10 +26,13 @@ export class AccountPage {
   }
 
   ionViewWillEnter() {
+    this.loadingCtrl.onLoading();
     this.workaroundSideMenu();
     let shop = JSON.parse(window.localStorage.getItem("shop"));
+    this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
     this.shop = shop;
     console.log('ionViewDidLoad AccountPage');
+    this.loadingCtrl.dismiss();
   }
 
   logout(e) {
