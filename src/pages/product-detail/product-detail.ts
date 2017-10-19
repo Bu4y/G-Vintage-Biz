@@ -108,7 +108,16 @@ export class ProductDetailPage {
         this.loadingCtrl.onLoading();
         this.productService.updateProduct(data).then((resq) => {
           this.loadingCtrl.dismiss();
-          this.navCtrl.pop();
+          this.loadingCtrl.onLoading();
+          this.productService.getProductByID(this.navParams.data._id).then(data => {
+            console.log(data);
+            this.items = data;
+            this.loadingCtrl.dismiss();
+          }).catch(e => {
+            this.loadingCtrl.dismiss();
+            alert(e);
+          })
+          // this.navCtrl.pop();
         }, (err) => {
           this.loadingCtrl.dismiss();
           alert(JSON.parse(err._body).message);
