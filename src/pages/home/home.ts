@@ -181,6 +181,7 @@ export class HomePage {
 
     }, err => {
       this.loadingCtrl.dismiss();
+      this.events.unsubscribe('notification:received');
       // alert(JSON.parse(err._body).message);
       this.app.getRootNav().setRoot(LoginPage);
     })
