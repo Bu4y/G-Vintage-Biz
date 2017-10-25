@@ -74,13 +74,11 @@ export class MyApp {
       loading.present();
       this.shopService.getShopListByUser().then(data => {
         this.shopList = data;
-        this.events.unsubscribe('notification:received');
         loading.dismiss();
       }).catch(err => {
         window.localStorage.removeItem('jjuserbuyer');
         window.localStorage.removeItem('shop');
         this.rootPage = LoginPage;
-        this.events.unsubscribe('notification:received');
         loading.dismiss();
 
       });
