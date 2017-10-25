@@ -70,7 +70,7 @@ import { LoadingProvider } from '../providers/loading/loading';
     Ionic2RatingModule,
     IonicModule.forRoot(MyApp, {
       SegmentButton: 'segment',
-      mode: 'ios'
+      mode: 'md'
     }),
     EcommerceCoreModule.forRoot('https://greenvintage-v2.herokuapp.com/api/')
   ],
