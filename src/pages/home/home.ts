@@ -186,11 +186,11 @@ export class HomePage {
         });
       }
       this.flag = true;      
-      this.loadingCtrl.dismiss();
+      this.loadingCtrl.dismissAll();
 
     }, err => {
       this.flag = true;
-      this.loadingCtrl.dismiss();
+      this.loadingCtrl.dismissAll();
       // alert(JSON.parse(err._body).message);
       this.app.getRootNav().setRoot(LoginPage);
     })

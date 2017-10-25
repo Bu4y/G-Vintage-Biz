@@ -29,16 +29,16 @@ export class TabsPage {
     this.getShop();
   }
   getShop() {
-    let loading = this.loadingCtrl.create();
-    loading.present();
+    // let loading = this.loadingCtrl.create();
+    // loading.present();
     this.shopService.getShopListByUser().then(data => {
       console.log(data);
-      loading.dismiss();
+      // loading.dismiss();
       if (data && data.length === 0) {
         this.createShopModal();
       }
     }, err => {
-      loading.dismiss();
+      // loading.dismiss();
       alert(JSON.parse(err._body).message);
     });
   }
@@ -46,13 +46,13 @@ export class TabsPage {
     let shopModal = this.modalControl.create(CreateshopPage);
     shopModal.onDidDismiss(data => {
       if (data && data.name) {
-        let loading = this.loadingCtrl.create();
-        loading.present();
+        // let loading = this.loadingCtrl.create();
+        // loading.present();
         this.shopService.createShop(data)
           .then((resp) => {
-            loading.dismiss();
+            // loading.dismiss();
           }, (err) => {
-            loading.dismiss();
+            // loading.dismiss();
             alert(JSON.parse(err._body).message);
           });
       }
