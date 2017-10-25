@@ -68,8 +68,11 @@ import { LoadingProvider } from '../providers/loading/loading';
     BrowserModule,
     HttpModule,
     Ionic2RatingModule,
-    IonicModule.forRoot(MyApp),
-    EcommerceCoreModule.forRoot('https://greenvintage-v3.herokuapp.com/api/')
+    IonicModule.forRoot(MyApp, {
+      SegmentButton: 'segment',
+      mode: 'ios'
+    }),
+    EcommerceCoreModule.forRoot('https://greenvintage-v2.herokuapp.com/api/')
   ],
   bootstrap: [IonicApp],
   entryComponents: [
