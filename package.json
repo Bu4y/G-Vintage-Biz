@@ -1,8 +1,8 @@
 {
     "name": "G-Vintage-Biz",
     "version": "0.0.1",
-    "author": "Ionic Framework",
-    "homepage": "http://ionicframework.com/",
+    "author": "G-Vintage-Biz",
+    "homepage": "https://greenvintage-v3.herokuapp.com/",
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",
@@ -51,7 +51,7 @@
         "@ionic/app-scripts": "3.0.0",
         "typescript": "2.3.4"
     },
-    "description": "An Ionic project",
+    "description": "G-Vintage-Biz project",
     "cordova": {
         "plugins": {
             "cordova-plugin-device": {},
