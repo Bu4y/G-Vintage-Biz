@@ -50,9 +50,10 @@ export class LoginPage {
         });
       }
 
-      this.navCtrl.push(TabsPage);
       this.loadingCtrl.dismiss();
+      this.navCtrl.push(TabsPage);      
       this.viewCtrl.dismiss();
+      
 
       // alert(JSON.stringify(data));
     }).catch(e => {

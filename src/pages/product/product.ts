@@ -23,6 +23,7 @@ export class ProductPage {
   loadData: Boolean = false;
   shop = {} as ShopModel;
   chkformimg = true;
+  flag = true;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -44,7 +45,8 @@ export class ProductPage {
       let currentPage = this.app.getActiveNav().getViews()[0].name;
       if (currentPage === 'ProductPage') {
         this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        if (this.shop) {
+        if (this.shop && this.flag) {
+          this.flag = false;
           this.getProduct(this.shop);
         }
       }
@@ -65,10 +67,12 @@ export class ProductPage {
     this.product = {} as ProductListModel;
     this.loadingCtrl.onLoading();
     this.productService.getProductListByShop(shop._id).then(data => {
+      this.flag = true;
       this.loadingCtrl.dismiss();
       console.log(data);
       this.product = data;
     }).catch(e => {
+      this.flag = true;      
       this.loadingCtrl.dismiss();
       // alert(e);
       this.app.getRootNav().setRoot(LoginPage);

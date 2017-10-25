@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,MenuController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, Events, App } from 'ionic-angular';
 import { ShopModel } from '@ngcommerce/core';
 import { LoadingProvider } from '../../providers/loading/loading';
 /**
@@ -17,18 +17,28 @@ import { LoadingProvider } from '../../providers/loading/loading';
 export class NotificationPage {
   shop = {} as ShopModel;
   notifications: Array<any> = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingProvider,public menuController: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingProvider, public menuController: MenuController, public events: Events, public app: App) {
+    events.subscribe('notification:received', () => {
+      let currentPage = this.app.getActiveNav().getViews()[0].name;
+      if (currentPage === 'NotificationPage') {
+        this.loadNoti();
+      }
+
+    });
   }
 
   ionViewWillEnter() {
-    
     this.loadingCtrl.onLoading();
-    let shop = JSON.parse(window.localStorage.getItem("shop"));
-    this.shop = shop;
-    this.notifications = JSON.parse(window.localStorage.getItem('sellerNotification'));
+    this.loadNoti();
     this.loadingCtrl.dismiss();
     // alert(this.notifications);
     this.workaroundSideMenu();
+  }
+
+  loadNoti() {
+    let shop = JSON.parse(window.localStorage.getItem("shop"));
+    this.shop = shop;
+    this.notifications = JSON.parse(window.localStorage.getItem('sellerNotification'));
   }
   private workaroundSideMenu() {
     let leftMenu = this.menuController.get('left');

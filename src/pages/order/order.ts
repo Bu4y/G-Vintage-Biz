@@ -40,6 +40,7 @@ export class OrderPage {
     }
   ];
   shop = {} as ShopModel;
+  flag = true;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -60,7 +61,8 @@ export class OrderPage {
       let currentPage = this.app.getActiveNav().getViews()[0].name;
       if (currentPage === 'OrderPage') {
         this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        if (this.shop) {
+        if (this.shop && this.flag) {
+          this.flag = false;
           this.getOrder(this.shop);
         }
       }
@@ -80,8 +82,10 @@ export class OrderPage {
     this.orderService.getOrderByShop(shop._id).then((data) => {
       console.log(data);
       this.order = data;
+      this.flag = true;
       this.loadingCtrl.dismiss();
     }, (err) => {
+      this.flag = true;
       this.loadingCtrl.dismiss();
       // alert(JSON.parse(err._body).message);
       this.app.getRootNav().setRoot(LoginPage);

@@ -36,6 +36,7 @@ export class HomePage {
   lineChart: any;
   user: any;
   shop = {} as ShopModel;
+  flag = true;
   constructor(
     public navCtrl: NavController,
     public homeService: HomeService,
@@ -43,8 +44,11 @@ export class HomePage {
     public app: App,
     public events: Events
   ) {
+    this.subnoti();
+  }
 
-    events.subscribe('notification:received', () => {
+  subnoti() {
+    this.events.subscribe('notification:received', () => {
       // let shop = JSON.parse(window.localStorage.getItem("shop"));
       // this.shop = shop;
       // if (this.shop) {
@@ -54,26 +58,30 @@ export class HomePage {
       let currentPage = this.app.getActiveNav().getViews()[0].name;
       if (currentPage === 'HomePage') {
         this.shop = JSON.parse(window.localStorage.getItem('shop'));
-        if (this.shop) {
+        if (this.shop && this.flag) {
+          this.flag = false;
+          // this.loadingCtrl.onLoading();
           this.getOrder(this.shop);
+          // this.loadingCtrl.dismiss();
         }
+        // this.events.unsubscribe('notification:received');
+        // this.subnoti();
       }
 
     });
-
   }
+
   ionViewWillEnter() {
     console.log('ionViewDidLoad HomePage');
 
     let shop = JSON.parse(window.localStorage.getItem("shop"));
     this.shop = shop;
-    if (this.shop) {
+    if (this.shop) {   
       this.getOrder(this.shop);
     }
   }
 
   getOrder(shop) {
-
     this.loadingCtrl.onLoading();
     this.homeService.getHomeSeller(shop._id).then(data => {
 
@@ -156,7 +164,7 @@ export class HomePage {
             scales: {
               yAxes: [{
                 gridLines: {
-                  display:false,                  
+                  display: false,
                   color: "gray"
                 },
                 ticks: {
@@ -165,7 +173,7 @@ export class HomePage {
               }],
               xAxes: [{
                 gridLines: {
-                  display:false,
+                  display: false,
                   color: "gray"
                 },
                 ticks: {
@@ -177,11 +185,12 @@ export class HomePage {
 
         });
       }
+      this.flag = true;      
       this.loadingCtrl.dismiss();
 
     }, err => {
+      this.flag = true;
       this.loadingCtrl.dismiss();
-      this.events.unsubscribe('notification:received');
       // alert(JSON.parse(err._body).message);
       this.app.getRootNav().setRoot(LoginPage);
     })
