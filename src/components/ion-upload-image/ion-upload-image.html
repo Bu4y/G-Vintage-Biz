@@ -1,6 +1,6 @@
 <!-- Generated template for the IonUploadImageComponent component -->
 <div *ngIf="images.length === 0">
-    <img src="http://yum-yum-traveler.com/wp-content/themes/soledad/images/no-image.jpg">
+    <img (click)="onUpload()" src="./assets/image/uploadImg.jpg">
 </div>
 
 <div *ngIf="images.length > 0">
