@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { ImagePicker } from '@ionic-native/image-picker';
 import * as firebase from 'firebase';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, Slides } from 'ionic-angular';
 /**
  * Generated class for the IonUploadImageComponent component.
  *
@@ -13,8 +13,9 @@ import { LoadingController } from 'ionic-angular';
   templateUrl: 'ion-upload-image.html'
 })
 export class IonUploadImagesComponent {
+  @ViewChild('formSlideImages') formSlideImages: Slides;
   @Input() images: Array<any> = [];
-  @Input() isShowUpload : boolean;
+  @Input() isShowUpload: boolean;
   @Input() maximumImagesCount: any;
   @Output() resImage: EventEmitter<any> = new EventEmitter();
   constructor(
@@ -25,44 +26,49 @@ export class IonUploadImagesComponent {
   }
 
   onRemove(i) {
+    if (this.images.length > 1) {
+      this.formSlideImages.slidePrev();
+    }
     this.images.splice(i, 1);
     this.resImage.emit(this.images);
   }
 
   onUpload() {
-    
-        let options = {
-          maximumImagesCount: this.maximumImagesCount,
-          width: 900,
-          quality: 30,
-          outputType: 1
-        };
-    
-        this.imagePicker.getPictures(options).then((results) => {
-    
-          let loading = [];
-          let loadingCount = 0;
-          for (var i = 0; i < results.length; i++) {
-            loading.push(this.loading.create({
-              content: (i + 1) + '/' + (results.length),
-              cssClass: `loading-upload`,
-              showBackdrop: false
-            }));
-            loading[i].present();
-            this.uploadImage(results[i]).then((resUrl) => {
-              this.images.push(resUrl);
-              this.resImage.emit(this.images);
-              loading[loadingCount].dismiss();
-              loadingCount++;
-            }, (error) => {
-              loading[loadingCount].dismiss();
-              loadingCount++;
-              alert('Upload Fail. ' + JSON.stringify(error));
-            })
-          }
-    
-        }, (err) => { });
+
+    let options = {
+      maximumImagesCount: this.maximumImagesCount,
+      width: 900,
+      quality: 30,
+      outputType: 1
+    };
+
+    this.imagePicker.getPictures(options).then((results) => {
+
+      let loading = [];
+      let loadingCount = 0;
+      for (var i = 0; i < results.length; i++) {
+        loading.push(this.loading.create({
+          content: (i + 1) + '/' + (results.length),
+          cssClass: `loading-upload`,
+          showBackdrop: false
+        }));
+        loading[i].present();
+        this.uploadImage(results[i]).then((resUrl) => {
+          this.images.push(resUrl);
+          this.resImage.emit(this.images);
+          setTimeout(() => {
+            loading[loadingCount].dismiss();
+            loadingCount++;
+          }, 1000);
+        }, (error) => {
+          loading[loadingCount].dismiss();
+          loadingCount++;
+          alert('Upload Fail. ' + JSON.stringify(error));
+        })
       }
+
+    }, (err) => { });
+  }
 
   uploadImage(imageString): Promise<any> {
 

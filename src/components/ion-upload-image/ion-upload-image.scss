@@ -13,14 +13,15 @@ ion-upload-image {
     max-width: 100% !important;
 }
 #fixPosition {
-    background-color: #acacac !important;
+    background-color: #D8625D !important;
     width: 50px !important;
     text-align: center !important;
     position: absolute !important;
     bottom: 5px !important;
-    right: 0px !important;
+    right: -1px !important;
 }
 #iconTrash{
+    font-size: 3.5rem !important;
     color: rgb(233, 233, 233) !important;
 }
 #maxImage{

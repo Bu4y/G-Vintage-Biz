@@ -4,11 +4,11 @@
 </div>
 
 <div *ngIf="images.length > 0">
-  <ion-slides pager="true">
+  <ion-slides #formSlideImages pager="true">
     <ion-slide *ngFor="let item of images; let i = index;">
       <img id="maxImage" src="{{ item }}">
       <div id="fixPosition">
-          <ion-icon id="iconTrash" name="ios-trash-outline" (click)="onRemove(i)"></ion-icon>
+          <ion-icon id="iconTrash" name="ios-trash" (click)="onRemove(i)"></ion-icon>
       </div>
     </ion-slide>
   </ion-slides>
