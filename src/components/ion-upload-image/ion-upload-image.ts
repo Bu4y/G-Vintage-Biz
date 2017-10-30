@@ -29,25 +29,39 @@ export class IonUploadImagesComponent {
   }
 
   onUpload() {
-
-    let options = {
-      maximumImagesCount: this.maximumImagesCount,
-      width: 900,
-      quality: 30,
-      outputType: 1
-    };
-
-    this.imagePicker.getPictures(options).then((results) => {
-      for (var i = 0; i < results.length; i++) {
-        this.uploadImage(results[i]).then((resUrl) => {
-          this.images.push(resUrl);
-          this.resImage.emit(this.images);
-        }, (error) => {
-          alert('Upload Fail. ' + JSON.stringify(error));
-        })
+    
+        let options = {
+          maximumImagesCount: this.maximumImagesCount,
+          width: 900,
+          quality: 30,
+          outputType: 1
+        };
+    
+        this.imagePicker.getPictures(options).then((results) => {
+    
+          let loading = [];
+          let loadingCount = 0;
+          for (var i = 0; i < results.length; i++) {
+            loading.push(this.loading.create({
+              content: 'Uploading... ' + (i + 1) + '/' + (results.length),
+              cssClass: `loading-upload`,
+              showBackdrop: false
+            }));
+            loading[i].present();
+            this.uploadImage('').then((resUrl) => {
+              this.images.push(resUrl);
+              this.resImage.emit(this.images);
+              loading[loadingCount].dismiss();
+              loadingCount++;
+            }, (error) => {
+              loading[loadingCount].dismiss();
+              loadingCount++;
+              alert('Upload Fail. ' + JSON.stringify(error));
+            })
+          }
+    
+        }, (err) => { });
       }
-    }, (err) => { });
-  }
 
   uploadImage(imageString): Promise<any> {
 

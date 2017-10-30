@@ -1,3 +1,9 @@
 ion-upload-image {
 
 }
+.loading-upload {
+    .loading-wrapper {
+        box-shadow: none !important;
+        background-color: #dfdfdf !important;
+    }
+}

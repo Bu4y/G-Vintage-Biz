@@ -1,7 +1,19 @@
 <!-- Generated template for the IonUploadImageComponent component -->
-<button ion-button block (click)="onUpload()">Upload Image</button>
-
-<div *ngFor="let item of images; let i = index;">
-  <button ion-button (click)="onRemove(i)">Remove</button>
-  <img src="{{ item }}">
+<div *ngIf="images.length === 0">
+    <img src="http://yum-yum-traveler.com/wp-content/themes/soledad/images/no-image.jpg">
 </div>
+
+<div *ngIf="images.length > 0">
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let item of images; let i = index;">
+      <img src="{{ item }}">
+      <div id="fixPosition">
+          <ion-icon id="iconTrash" name="ios-trash-outline" (click)="onRemove(i)"></ion-icon>
+      </div>
+        <!-- <button id="fixPosition" ion-button (click)="onRemove(i)">Remove</button> -->
+    </ion-slide>
+  </ion-slides>
+</div>
+
+
+<button ion-button block (click)="onUpload()">Upload Image</button>
