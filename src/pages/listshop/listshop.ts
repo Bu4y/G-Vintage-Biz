@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angular';
 import { ShopService, ShopListModel } from '@ngcommerce/core';
 import { LoadingProvider } from '../../providers/loading/loading';
+import { ShopDetailPage } from '../shop-detail/shop-detail';
 
 /**
  * Generated class for the ListshopPage page.
@@ -51,6 +52,9 @@ export class ListshopPage {
     });
     shopModal.present();
 
+  }
+  selected(e){
+    this.navCtrl.push(ShopDetailPage, e);
   }
 
 }

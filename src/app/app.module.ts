@@ -20,7 +20,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Facebook } from '@ionic-native/facebook';
 import { HttpModule } from "@angular/http";
-import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonDetailProductComponent, IonFormProductComponent, IonListShopComponent, IonFormShopComponent, IonUploadImageComponent } from "@ngcommerce/core";
+import { EcommerceCoreModule, IonSegmentOrderComponent, IonListOrderComponent, IonOrdersComponent, IonDetailOrderComponent, IonFormProfileComponent, IonListProductComponent, IonDetailProductComponent, IonFormProductComponent, IonListShopComponent, IonFormShopComponent, IonUploadImageComponent, IonDetailShopComponent } from "@ngcommerce/core";
 import { Ionic2RatingModule } from 'ionic2-rating'
 import { OrderDetailPage } from '../pages/order-detail/order-detail';
 import { ProductDetailPage } from './../pages/product-detail/product-detail';
@@ -31,7 +31,7 @@ import { Base64 } from "@ionic-native/base64";
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { LoadingProvider } from '../providers/loading/loading';
 import { IonUploadImagesComponent } from '../components/ion-upload-image/ion-upload-image';
-
+import { ShopDetailPage } from './../pages/shop-detail/shop-detail';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,8 @@ import { IonUploadImagesComponent } from '../components/ion-upload-image/ion-upl
     IonUploadImagesComponent,
     IonUploadImageComponent,
     EditProfilePage,
-    
+    ShopDetailPage,
+    IonDetailShopComponent
 
   ],
   imports: [
@@ -95,7 +96,8 @@ import { IonUploadImagesComponent } from '../components/ion-upload-image/ion-upl
     CreatProductPage,
     ListshopPage,
     CreateshopPage,
-    EditProfilePage
+    EditProfilePage,
+    ShopDetailPage
   ],
   providers: [
     StatusBar,

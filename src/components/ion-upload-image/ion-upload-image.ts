@@ -14,6 +14,7 @@ import { LoadingController } from 'ionic-angular';
 })
 export class IonUploadImagesComponent {
   @Input() images: Array<any> = [];
+  @Input() isShowUpload : boolean;
   @Input() maximumImagesCount: any;
   @Output() resImage: EventEmitter<any> = new EventEmitter();
   constructor(
