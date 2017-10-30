@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="header-cs"> 
+  <ion-navbar color="header-cs">
     <ion-title>{{e && e._id ? 'Edit Product' : 'Create Product'}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="cancelDissmis()">
@@ -19,10 +19,166 @@
 
 
 <ion-content>
-  <div *ngIf="showForm">
+  <!-- <div *ngIf="showForm">
     <ion-form-product *ngIf="categories && categories.length > 0 && shippings && shippings.length > 0 && shops && shops.length > 0"
       [categories]="categories" [shippings]="shippings" [shops]="shops" [currency]="currency" [item]="e" [chkformimg]="chkformimg" (itemClicked)="createProduct($event)"
       (cancelCreate)="cancelDissmis($event)"></ion-form-product>
+  </div> -->
 
+  <div *ngIf="showForm">
+    <!-- <ion-slides pager="true">
+      <ion-slide>
+        <img src="">
+      </ion-slide>
+    </ion-slides> -->
+    <ion-item>
+      <ion-thumbnail>
+        <img src="">
+      </ion-thumbnail>
+    </ion-item>
+    <ion-grid id="gridDetail">
+      <ion-row>
+        <ion-col id="colProduct">
+          <ion-row>
+            <ion-item>
+              <ion-label floating>Name*</ion-label>
+              <ion-input type="text" [(ngModel)]="e.name"></ion-input>
+              <!-- <ion-input type="text" placeholder="Name*"></ion-input> -->
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item>
+              <ion-label floating>Product Detail</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item>
+              <ion-label floating>Categories*</ion-label>
+              <ion-select [(ngModel)]="e.categories" multiple="true">
+                <ion-option *ngFor="let items of categories" [value]="items._id">{{items.name}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>Promotionprice</ion-label>
+                <ion-input type="number"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>Price</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>Percentofdiscount</ion-label>
+                <ion-input type="number"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>Currency*</ion-label>
+                <ion-select [(ngModel)]="e.currency">
+                  <ion-option *ngFor="let items of currency" [value]="items.name">{{items.name}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <!-- <ion-item>
+            <ion-label floating>Product Price</ion-label>
+            <ion-input type="number"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Product Percentofdiscount</ion-label>
+            <ion-input type="number"></ion-input>
+          </ion-item> -->
+
+          <!-- <p> -->
+          <!-- <span id="promotionprice">item.promotionprice item.currency</span> -->
+          <!-- <span id="price">item.price item.currency</span> -->
+          <!-- <span id="percentofdiscount">- item.percentofdiscount %</span> -->
+          <!-- </p> -->
+          <!-- <span id="priceNormal">item.price item.currency</span> -->
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col width-50 id="colRate">
+          <rating [(ngModel)]="item.rate" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star"
+            nullable="false"></rating>
+        </ion-col>
+        <ion-col width-50 text-right id="colBtn">
+          <button ion-button color="danger" clear icon-only>
+            <ion-icon name='ios-share-outline' is-active="false"></ion-icon>
+          </button>
+          <button ion-button color="danger" clear icon-only>
+            <ion-icon name='ios-heart'></ion-icon>
+            <ion-icon name='ios-heart-outline'></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row> -->
+      <!-- <ion-row>
+        <ion-col>
+          <span> item.rate </span>
+          <span>From 5</span>
+        </ion-col>
+      </ion-row> -->
+      <!-- <ion-row>
+        <ion-col>
+          <span>{{item && item.reviews && item.reviews.length > 0 ? item.reviews.length : 0}} รีวิว</span>
+        </ion-col>
+      </ion-row> -->
+    </ion-grid>
+    <ion-row>
+      <ion-col text-left id="colShipping">
+        วิธีการจัดส่ง*
+      </ion-col>
+    </ion-row>
+    <ion-list>
+      <ion-item-divider>
+        <ion-icon item-start name="ios-archive-outline"></ion-icon>
+        <ion-label></ion-label>
+        <ion-select [(ngModel)]="e.shop" [disabled]="true">
+          <ion-option *ngFor="let items of shops" [value]="items._id">{{items.name}}</ion-option>
+          </ion-select>
+      </ion-item-divider>
+      <ion-item-divider>
+        <ion-icon item-start name="ios-cash-outline"></ion-icon>
+        <ion-label></ion-label>
+        <ion-select [(ngModel)]="e.shippings" multiple="true">
+          <ion-option *ngFor="let items of shippings" [value]="items._id">{{items.name}}</ion-option>
+        </ion-select>
+      </ion-item-divider>
+    </ion-list>
+    <ion-row>
+      <ion-col text-left id="colShop">
+        จัดจำหน่ายโดย :
+      </ion-col>
+    </ion-row>
+    <ion-grid id="gridShop">
+      <ion-item>
+        <!-- <ion-row>
+          <ion-col> -->
+            <!-- <span>item.shop.name</span> -->
+            <!-- <ion-label floating>Shop*</ion-label> -->
+            <ion-select [(ngModel)]="e.shop" [disabled]="true">
+              <ion-option *ngFor="let items of shops" [value]="items._id">{{items.name}}</ion-option>
+              </ion-select>
+          <!-- </ion-col>
+        </ion-row> -->
+        <!-- <ion-row>
+          <ion-col text-left>
+            <rating [(ngModel)]="item.shop.rate" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half"
+              starIconName="star" nullable="false"></rating>
+          </ion-col>
+        </ion-row> -->
+      </ion-item>
+    </ion-grid>
   </div>
 </ion-content>
