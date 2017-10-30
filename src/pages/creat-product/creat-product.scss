@@ -62,13 +62,18 @@ page-creat-product {
         max-width: 100%;
     }
     #fixPosition {
-        position: fixed;
-        margin: -37px 0px 0px 331px;
         background-color: #acacac;
         width: 50px;
         text-align: center;
+        position: absolute;
+        bottom: 5px;
+        right: 0px;
     }
     #iconTrash{
         color: rgb(233, 233, 233);
     }
+    #maxImage{
+        max-height: 350px;
+    }
+   
 }

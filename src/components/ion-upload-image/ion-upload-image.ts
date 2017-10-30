@@ -43,12 +43,12 @@ export class IonUploadImagesComponent {
           let loadingCount = 0;
           for (var i = 0; i < results.length; i++) {
             loading.push(this.loading.create({
-              content: 'Uploading... ' + (i + 1) + '/' + (results.length),
+              content: (i + 1) + '/' + (results.length),
               cssClass: `loading-upload`,
               showBackdrop: false
             }));
             loading[i].present();
-            this.uploadImage('').then((resUrl) => {
+            this.uploadImage(results[i]).then((resUrl) => {
               this.images.push(resUrl);
               this.resImage.emit(this.images);
               loading[loadingCount].dismiss();

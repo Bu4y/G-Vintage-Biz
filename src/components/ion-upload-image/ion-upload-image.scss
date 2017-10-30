@@ -5,5 +5,7 @@ ion-upload-image {
     .loading-wrapper {
         box-shadow: none !important;
         background-color: #dfdfdf !important;
+        border-radius: 0px !important;
+        width: 350px !important;
     }
 }
