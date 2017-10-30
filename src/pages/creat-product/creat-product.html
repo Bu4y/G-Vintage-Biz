@@ -26,6 +26,7 @@
   </div> -->
 
   <div *ngIf="showForm">
+      <ion-upload-images [maximumImagesCount]="3" [images]="pImages" (resImage)="resImageEvent($event)"></ion-upload-images>
     <!-- <ion-slides pager="true">
       <ion-slide>
         <img src="">

@@ -1,0 +1,7 @@
+<!-- Generated template for the IonUploadImageComponent component -->
+<button ion-button block (click)="onUpload()">Upload Image</button>
+
+<div *ngFor="let item of images; let i = index;">
+  <button ion-button (click)="onRemove(i)">Remove</button>
+  <img src="{{ item }}">
+</div>

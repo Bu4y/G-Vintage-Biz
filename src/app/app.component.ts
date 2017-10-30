@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ShopService, UserModel } from '@ngcommerce/core';
 import { TabsPage } from '../pages/tabs/tabs';
+import * as firebase from 'firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -39,6 +40,20 @@ export class MyApp {
       this.rootPage = TabsPage;
     }
     this.workaroundSideMenu();
+    this.configFirebase();
+  }
+
+
+  configFirebase() {
+    let config = {
+      apiKey: "AIzaSyCweKU6JKA5Peppq6pVw3Iur7eIyZj7rGc",
+      authDomain: "i3chat-75016.firebaseapp.com",
+      databaseURL: "https://i3chat-75016.firebaseio.com",
+      projectId: "i3chat-75016",
+      storageBucket: "i3chat-75016.appspot.com",
+      messagingSenderId: "386067578103"
+    };
+    firebase.initializeApp(config);
   }
 
   initOnesignal() {

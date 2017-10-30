@@ -27,7 +27,7 @@ import { LoadingProvider } from '../../providers/loading/loading';
   templateUrl: 'creat-product.html',
 })
 export class CreatProductPage {
-
+  pImages: Array<string> = ['https://cdn.noths-static.com/fs/38/38/b2d6-8592-40f7-9c4a-e1f2610d6186/original_omg-you-re-50-birthday-card.jpg','https://cdn.noths-static.com/fs/38/38/b2d6-8592-40f7-9c4a-e1f2610d6186/original_omg-you-re-50-birthday-card.jpg'];
   shops: Array<ShopModel> = [];
   categories: Array<CategoryModel>;
   shippings: Array<ShippingModel>;
@@ -118,5 +118,7 @@ export class CreatProductPage {
   cancelDissmis(e) {
     this.viewCtrl.dismiss();
   }
-
+  resImageEvent(e) {
+    alert(e);
+  }
 }

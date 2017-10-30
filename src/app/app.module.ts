@@ -30,6 +30,7 @@ import { ImagePicker } from "@ionic-native/image-picker";
 import { Base64 } from "@ionic-native/base64";
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { LoadingProvider } from '../providers/loading/loading';
+import { IonUploadImagesComponent } from '../components/ion-upload-image/ion-upload-image';
 
 
 @NgModule({
@@ -60,8 +61,10 @@ import { LoadingProvider } from '../providers/loading/loading';
     IonFormProductComponent,
     IonListShopComponent,
     IonFormShopComponent,
+    IonUploadImagesComponent,
     IonUploadImageComponent,
-    EditProfilePage
+    EditProfilePage,
+    
 
   ],
   imports: [
