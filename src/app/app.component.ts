@@ -46,12 +46,12 @@ export class MyApp {
 
   configFirebase() {
     let config = {
-      apiKey: "AIzaSyCweKU6JKA5Peppq6pVw3Iur7eIyZj7rGc",
-      authDomain: "i3chat-75016.firebaseapp.com",
-      databaseURL: "https://i3chat-75016.firebaseio.com",
-      projectId: "i3chat-75016",
-      storageBucket: "i3chat-75016.appspot.com",
-      messagingSenderId: "386067578103"
+      apiKey: "AIzaSyActRoM7SJW0h20HTM9GrkwJICC4moOzC8",
+      authDomain: "green-vintage.firebaseapp.com",
+      databaseURL: "https://green-vintage.firebaseio.com",
+      projectId: "green-vintage",
+      storageBucket: "green-vintage.appspot.com",
+      messagingSenderId: "317596581774"
     };
     firebase.initializeApp(config);
   }

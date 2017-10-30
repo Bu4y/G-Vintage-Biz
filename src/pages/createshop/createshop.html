@@ -10,7 +10,7 @@
     <ion-title>Create Shop</ion-title>
   </ion-navbar> -->
   <ion-navbar color="header-cs">
-    <ion-title>{{item._id ? 'Update Shop' : 'Create Shop'}}</ion-title>
+    <ion-title>{{item._id ? 'Update Shop' : 'Edit Shop'}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="canceldissmis()">
         <ion-icon name="close-circle"></ion-icon>
@@ -22,7 +22,6 @@
 <ion-content>
   <!-- <ion-form-shop (createShop)="createShop($event)"></ion-form-shop> -->
   <ion-upload-images [maximumImagesCount]="1" [images]="pImages" [isShowUpload]="false" (resImage)="resImageEvent($event)"></ion-upload-images>
-  <!-- <img src="{{item.image}}"> -->
   <ion-row wrap id="wrap">
     <ion-col no-padding col-12 id="colName">
       <ion-row>
@@ -57,5 +56,12 @@
       </ion-row>
     </ion-col>
   </ion-row>
-  <button ion-button block (click)="createShop(item)">Add</button>
+  <ion-row>
+      <ion-col col-6>
+        <button ion-button block (click)="createShop(item)">Submit</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block color="danger" (click)="canceldissmis()">Cancel</button>
+      </ion-col>
+    </ion-row>
 </ion-content>
