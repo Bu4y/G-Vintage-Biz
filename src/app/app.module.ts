@@ -76,7 +76,7 @@ import { ShopDetailPage } from './../pages/shop-detail/shop-detail';
       SegmentButton: 'segment',
       mode: 'md'
     }),
-    EcommerceCoreModule.forRoot('https://greenvintage-v3.herokuapp.com/api/')
+    EcommerceCoreModule.forRoot('https://greenvintage-v2.herokuapp.com/api/')
   ],
   bootstrap: [IonicApp],
   entryComponents: [
