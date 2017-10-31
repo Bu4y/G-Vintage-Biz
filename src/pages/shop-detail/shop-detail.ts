@@ -1,6 +1,6 @@
 import { CreateshopPage } from './../createshop/createshop';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,ModalController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { ShopModel, ShopService } from "@ngcommerce/core";
 import { LoadingProvider } from '../../providers/loading/loading';
 
@@ -19,11 +19,12 @@ import { LoadingProvider } from '../../providers/loading/loading';
 export class ShopDetailPage {
   shop = {} as ShopModel;
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public shopService:ShopService,
-    public modalCtrl:ModalController,
-    public loadingCtrl : LoadingProvider 
+    public shopService: ShopService,
+    public modalCtrl: ModalController,
+    public loadingCtrl: LoadingProvider,
+    public alertCtrl: AlertController
   ) {
   }
 
@@ -31,7 +32,7 @@ export class ShopDetailPage {
     console.log('ionViewDidLoad ShopDetailPage');
     this.init();
   }
-  init(){
+  init() {
     this.loadingCtrl.onLoading();
     this.shopService.getShopByID(this.navParams.data._id)
       .then(data => {
@@ -41,6 +42,32 @@ export class ShopDetailPage {
       }, err => {
         this.loadingCtrl.dismiss();
       });
+  }
+  alertdeleteShop(item) {
+    this.presentConfirm(item);
+  }
+  presentConfirm(item) {
+    const alert = this.alertCtrl.create({
+      title: 'Confirm Delete',
+      message: 'Do you want to delete this Shop?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            console.log('delete');
+            this.deleteShop(item);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   deleteShop(item) {
@@ -53,7 +80,7 @@ export class ShopDetailPage {
       this.loadingCtrl.dismiss();
     });
   }
-  updateShop(e){
+  updateShop(e) {
     let shopModal = this.modalCtrl.create(CreateshopPage, e);
     shopModal.onDidDismiss(data => {
       if (data && data.name && data.name !== undefined) {
@@ -82,7 +109,7 @@ export class ShopDetailPage {
   //   let reviewModal = this.modalCtrl.create(WritereviewPage);
   //   reviewModal.onDidDismiss(data => {
   //     if (data && data.topic !== '' && data.comment !== '' && data.rate !== '') {
-        
+
   //       this.loadingCtrl.onLoading();
   //       this.shopService.reviewShop(this.shop._id, data)
   //         .then((resp) => {
