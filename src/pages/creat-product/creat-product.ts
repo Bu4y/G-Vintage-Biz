@@ -293,8 +293,13 @@ export class CreatProductPage {
       alert('Please Enter Your Upload Image!');
       return;
     }
-    e.images = this.resImg;
-    this.viewCtrl.dismiss(e);
+    if (this.pImages.length > 0) {
+      e.images = this.pImages;
+      this.viewCtrl.dismiss(e);
+    } else {
+      e.images = this.resImg;
+      this.viewCtrl.dismiss(e);
+    }
     // this.itemClicked.emit(item);
   }
 }
