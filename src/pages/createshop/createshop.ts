@@ -32,6 +32,10 @@ export class CreateshopPage {
   }
 
   createShop(data) {
+    if (!data.name) {
+      alert('Please Enter Your Name!');
+      return;
+    }
     data.image = this.resImg;
     this.viewCtrl.dismiss(data);
   }
