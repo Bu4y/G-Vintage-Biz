@@ -26,12 +26,6 @@
       </ion-refresher-content>
     </ion-refresher>
     <ion-list-product [items]="product.items" (selectedProduct)="selected($event)"></ion-list-product>
-
-    <ion-fab bottom right>
-      <button ion-fab (click)="addProductModal()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-fab>
   </div>
 
   <div *ngIf="!shop">
@@ -41,4 +35,10 @@
       </ion-col>
     </ion-row>
   </div>
+
+  <ion-fab *ngIf="shop" bottom right>
+    <button ion-fab (click)="addProductModal()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
