@@ -21,7 +21,15 @@ import { LoadingProvider } from '../../providers/loading/loading';
 export class AccountPage {
   user: any;
   shop = {} as ShopModel;
-  constructor(public app: App, public navCtrl: NavController, public navParams: NavParams, public modalControl: ModalController, public menuController: MenuController, public loadingCtrl: LoadingProvider, public events: Events) {
+  constructor(
+    public app: App, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public modalControl: ModalController, 
+    public menuController: MenuController, 
+    public loadingCtrl: LoadingProvider, 
+    public events: Events
+  ) {
     this.user = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
   }
 

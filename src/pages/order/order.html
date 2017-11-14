@@ -22,14 +22,15 @@
 <ion-content>
   <div *ngIf="shop">
     <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+      <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh">
+        <!-- <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."> -->
       </ion-refresher-content>
     </ion-refresher>
     <ion-orders [steps]="steps" [channel]="channel">
       <ion-segment-order *ngIf="order && order.waiting" [items]="order" (SelectedOrder)="selectedItem($event)"></ion-segment-order>
     </ion-orders>
   </div>
-  
+
   <div *ngIf="!shop">
     <ion-row>
       <ion-col col-12>

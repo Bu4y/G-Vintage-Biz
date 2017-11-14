@@ -22,7 +22,8 @@
 <ion-content>
   <div *ngIf="shop">
     <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+      <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh">
+        <!-- <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."> -->
       </ion-refresher-content>
     </ion-refresher>
     <ion-list-product [items]="product.items" (selectedProduct)="selected($event)"></ion-list-product>
