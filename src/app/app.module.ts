@@ -32,6 +32,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { LoadingProvider } from '../providers/loading/loading';
 import { IonUploadImagesComponent } from '../components/ion-upload-image/ion-upload-image';
 import { ShopDetailPage } from './../pages/shop-detail/shop-detail';
+import { MomentPipe } from '../pipes/moment/moment';
 
 @NgModule({
   declarations: [
@@ -65,8 +66,8 @@ import { ShopDetailPage } from './../pages/shop-detail/shop-detail';
     IonUploadImageComponent,
     EditProfilePage,
     ShopDetailPage,
-    IonDetailShopComponent
-
+    IonDetailShopComponent,
+    MomentPipe
   ],
   imports: [
     BrowserModule,
