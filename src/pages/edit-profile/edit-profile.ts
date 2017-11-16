@@ -21,8 +21,10 @@ export class EditProfilePage {
   pImages: Array<string> = [];
   resImg: string = '';
   constructor(public navCtrl: NavController, public navParams: NavParams, public authenService: AuthenService, public alertCtrl: AlertController, public loadingCtrl: LoadingProvider) {
+    this.loadingCtrl.onLoading();
     this.editProfile = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
     this.pImages = this.editProfile.profileImageURL ? [this.editProfile.profileImageURL] : [];
+    this.loadingCtrl.dismiss();
     console.log(this.editProfile);
   }
 
