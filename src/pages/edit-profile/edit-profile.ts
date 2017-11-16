@@ -24,8 +24,8 @@ export class EditProfilePage {
     this.loadingCtrl.onLoading();
     this.editProfile = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
     this.pImages = this.editProfile.profileImageURL ? [this.editProfile.profileImageURL] : [];
-    this.loadingCtrl.dismiss();
     console.log(this.editProfile);
+    this.loadingCtrl.dismiss();
   }
 
   ionViewDidLoad() {
