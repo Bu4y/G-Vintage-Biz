@@ -172,8 +172,8 @@ export class CreatProductPage {
       if (this.e.percentofdiscount > 0) {
         if (this.e.percentofdiscount <= 100) {
           let pro = (this.e.percentofdiscount * this.e.price) / 100;
-
-          let num = (pro).toString();
+          let proFix = this.e.price - pro;
+          let num = (proFix).toString();
           let numSplit = num.split('.');
           if (numSplit && numSplit.length > 1) {
             let concatNum = numSplit[0] + '.' + numSplit[1].substr(0, 2);

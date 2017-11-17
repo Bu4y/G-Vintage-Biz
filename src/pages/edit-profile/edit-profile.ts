@@ -18,20 +18,29 @@ import { LoadingProvider } from '../../providers/loading/loading';
 })
 export class EditProfilePage {
   editProfile = {} as UserModel;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authenService: AuthenService, public alertCtrl: AlertController,public loadingCtrl : LoadingProvider) {
+  pImages: Array<string> = [];
+  resImg: string = '';
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authenService: AuthenService, public alertCtrl: AlertController, public loadingCtrl: LoadingProvider) {
+    this.loadingCtrl.onLoading();
     this.editProfile = JSON.parse(window.localStorage.getItem('jjuserbuyer'));
+    this.pImages = this.editProfile.profileImageURL ? [this.editProfile.profileImageURL] : [];
     console.log(this.editProfile);
+    this.loadingCtrl.dismiss();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfilePage');
   }
 
+  resImageEvent(e) {
+    this.resImg = e[0] ? e[0] : "";
+    // this.resImg = './assets/image/noimage.png';
+  }
+
   editAccount() {
     // this.editProfile
     this.loadingCtrl.onLoading();
-    
+    this.editProfile.profileImageURL = this.resImg;
     this.authenService.updateUser(this.editProfile).then((resp) => {
       window.localStorage.setItem('jjuserbuyer', JSON.stringify(resp));
       this.navCtrl.pop();
