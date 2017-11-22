@@ -55,7 +55,13 @@ page-createshop {
     .button-md {
         background-color: #5c926e;
     }
+    .button-md.activated {
+        background-color: #5c926e;
+    }
     .button-md-danger {
+        background-color: #f53d3d;
+    }
+    .button-md-danger.activated {
         background-color: #f53d3d;
     }
 }

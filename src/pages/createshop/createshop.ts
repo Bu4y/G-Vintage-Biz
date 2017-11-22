@@ -26,6 +26,11 @@ export class CreateshopPage {
   }
   resImageEvent(e) {
     this.resImg = e[0] ? e[0] : "";
+    if(this.resImg){
+      this.item.image = this.resImg;
+    }else{
+      this.item.image = '';
+    }
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateshopPage');
@@ -38,7 +43,7 @@ export class CreateshopPage {
     }else if(!data.image || this.pImages.length === 0){
       this.resImg = './assets/image/noimage.png';
     }
-    data.image = this.resImg;
+    data.image = this.item.image;
     console.log(data.image);
     this.viewCtrl.dismiss(data);
   }
