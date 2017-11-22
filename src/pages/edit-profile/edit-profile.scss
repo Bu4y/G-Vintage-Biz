@@ -2,6 +2,9 @@ page-edit-profile {
     .button-md {
         background-color: #5c926e;
     }
+    .button-md.activated {
+        background-color: #5c926e;
+    }
     #maxImage {
         border-radius: 50%;
         height: 200px;
