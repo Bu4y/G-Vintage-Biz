@@ -4,6 +4,7 @@ import { IonicPage, ModalController, NavController, NavParams } from 'ionic-angu
 import { ShopService, ShopListModel } from '@ngcommerce/core';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ShopDetailPage } from '../shop-detail/shop-detail';
+import { Dialogs } from "@ionic-native/dialogs";
 
 /**
  * Generated class for the ListshopPage page.
@@ -20,8 +21,14 @@ import { ShopDetailPage } from '../shop-detail/shop-detail';
 export class ListshopPage {
   shop = {} as ShopListModel;
 
-  constructor(public navCtrl: NavController,
-    public navParams: NavParams, public shopService: ShopService, public modalControl: ModalController, public loadingCtrl: LoadingProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams, 
+    public shopService: ShopService, 
+    public modalControl: ModalController, 
+    public loadingCtrl: LoadingProvider,
+    private dialogs: Dialogs
+  ) {
 
   }
 
@@ -46,6 +53,7 @@ export class ListshopPage {
           }, (err) => {
             this.loadingCtrl.dismiss();
             alert(JSON.parse(err._body).message);
+            this.dialogs.alert(JSON.parse(err._body).message,'List Shop');
           });
       }
 

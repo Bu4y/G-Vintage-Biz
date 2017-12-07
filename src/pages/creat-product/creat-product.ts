@@ -13,6 +13,7 @@ import {
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { LoadingProvider } from '../../providers/loading/loading';
+import { Dialogs } from "@ionic-native/dialogs";
 
 /**
  * Generated class for the CreatProductPage page.
@@ -45,7 +46,8 @@ export class CreatProductPage {
     public shippingService: ShippingService,
     public currencyService: CurrencyService,
     public loadingCtrl: LoadingProvider,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    private dialogs: Dialogs
   ) {
     let shopselec = JSON.parse(window.localStorage.getItem('shop'));
     this.shops = [shopselec];
@@ -72,7 +74,7 @@ export class CreatProductPage {
       this.loadCate();
     }, (err) => {
       this.loadingCtrl.dismiss();
-      alert(JSON.parse(err._body).message);
+      this.dialogs.alert(JSON.parse(err._body).message,'Creat Product');
     });
   }
 
@@ -84,7 +86,7 @@ export class CreatProductPage {
       this.loadShipping();
     }, (err) => {
       this.loadingCtrl.dismiss();
-      alert(JSON.parse(err._body).message);
+      this.dialogs.alert(JSON.parse(err._body).message,'Creat Product');
     });
   }
 
@@ -96,7 +98,7 @@ export class CreatProductPage {
       this.loadCurrency();
     }, (err) => {
       this.loadingCtrl.dismiss();
-      alert(JSON.parse(err._body).message);
+      this.dialogs.alert(JSON.parse(err._body).message,'Creat Product');
     });
   }
 
@@ -108,7 +110,7 @@ export class CreatProductPage {
       this.loadingCtrl.dismiss();
     }, (err) => {
       this.loadingCtrl.dismiss();
-      alert(JSON.parse(err._body).message);
+      this.dialogs.alert(JSON.parse(err._body).message,'Creat Product');
     });
   }
 
@@ -154,7 +156,7 @@ export class CreatProductPage {
 
           // this.item.percentofdiscount = parseFloat((100 - per).toFixed(2));
         } else {
-          alert('ส่วนลดมากกว่าราคาขายจริง');
+          this.dialogs.alert('ส่วนลดมากกว่าราคาขายจริง');
           this.e.percentofdiscount = null;
           this.e.promotionprice = null;
         }
@@ -183,7 +185,7 @@ export class CreatProductPage {
           }
           // this.e.promotionprice = parseFloat((this.e.price - pro).toFixed(2));
         } else {
-          alert('มากกว่า 100 เปอร์เซ็นต์');
+          this.dialogs.alert('มากกว่า 100 เปอร์เซ็นต์');
           this.e.promotionprice = null;
           this.e.percentofdiscount = null;
         }
@@ -269,28 +271,28 @@ export class CreatProductPage {
   }
   onClickAddProd(e) {
     if (!e.name) {
-      alert('Please Enter Your Name!');
+      this.dialogs.alert('Please Enter Your Name!','Creat Product');
       return;
     } else if (!e.detail) {
-      alert('Please Enter Your Detail!');
+      this.dialogs.alert('Please Enter Your Detail!','Creat Product');
       return;
     } else if (!e.price) {
-      alert('Please Enter Your Price!');
+      this.dialogs.alert('Please Enter Your Price!','Creat Product');
       return;
     } else if (!e.currency) {
-      alert('Please Enter Your Currency!');
+      this.dialogs.alert('Please Enter Your Currency!','Creat Product');
       return;
     } else if (!e.shippings) {
-      alert('Please Enter Your Shippings!');
+      this.dialogs.alert('Please Enter Your Shippings!','Creat Product');
       return;
     } else if (!e.categories) {
-      alert('Please Enter Your Categories!');
+      this.dialogs.alert('Please Enter Your Categories!','Creat Product');
       return;
     } else if (!e.shop) {
-      alert('Please Enter Your Shop!');
+      this.dialogs.alert('Please Enter Your Shop!','Creat Product');
       return;
     } else if (this.pImages.length === 0) {
-      alert('Please Enter Your Upload Image!');
+      this.dialogs.alert('Please Enter Your Upload Image!','Creat Product');
       return;
     }
     if (this.pImages.length > 0) {

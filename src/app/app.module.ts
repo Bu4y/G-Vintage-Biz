@@ -33,6 +33,7 @@ import { LoadingProvider } from '../providers/loading/loading';
 import { IonUploadImagesComponent } from '../components/ion-upload-image/ion-upload-image';
 import { ShopDetailPage } from './../pages/shop-detail/shop-detail';
 import { MomentPipe } from '../pipes/moment/moment';
+import { Dialogs } from "@ionic-native/dialogs";
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { MomentPipe } from '../pipes/moment/moment';
     OneSignal,
     ImagePicker,
     Base64,
+    Dialogs,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     LoadingProvider
   ]

@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, AlertController, ModalController, App, Events } from 'ionic-angular';
 import { ProductListModel, ProductService, ShopModel } from "@ngcommerce/core";
 import { LoadingProvider } from '../../providers/loading/loading';
+import { Dialogs } from "@ionic-native/dialogs";
+
 /**
  * Generated class for the ProductPage page.
  *
@@ -33,7 +35,8 @@ export class ProductPage {
     public modalCtrl: ModalController,
     public loadingCtrl: LoadingProvider,
     public app: App,
-    public events: Events
+    public events: Events,
+    private dialogs: Dialogs
 
   ) {
     events.subscribe('notification:received', () => {
@@ -92,7 +95,7 @@ export class ProductPage {
           this.getProduct(this.shop);
         }, (err) => {
           this.loadingCtrl.dismiss();
-          alert(JSON.parse(err._body).message);
+          this.dialogs.alert(JSON.parse(err._body).message, 'Product');
         });
       }
     });

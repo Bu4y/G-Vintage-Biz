@@ -6,6 +6,8 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { AuthenService, SignupModel } from "@ngcommerce/core";
 import { OneSignal } from '@ionic-native/onesignal';
 import { LoadingProvider } from '../../providers/loading/loading';
+import { Dialogs } from "@ionic-native/dialogs";
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -29,7 +31,8 @@ export class LoginPage {
     public loadingCtrl: LoadingProvider,
     public viewCtrl: ViewController,
     public oneSignal: OneSignal,
-    public platform: Platform
+    public platform: Platform,
+    private dialogs: Dialogs
   ) {
   }
   user = {} as SignupModel;
@@ -39,7 +42,7 @@ export class LoginPage {
 
     window.localStorage.removeItem('shop');
     window.localStorage.removeItem('jjuserbuyer');
-    
+
     this.loadingCtrl.onLoading();
     this.authenService.signIn(this.credential).then(data => {
       window.localStorage.setItem('jjuserbuyer', JSON.stringify(data));
@@ -51,14 +54,14 @@ export class LoginPage {
       }
 
       this.loadingCtrl.dismiss();
-      this.navCtrl.push(TabsPage);      
+      this.navCtrl.push(TabsPage);
       this.viewCtrl.dismiss();
-      
+
 
       // alert(JSON.stringify(data));
     }).catch(e => {
       this.loadingCtrl.dismiss();
-      alert(JSON.parse(e._body).message);
+      this.dialogs.alert(JSON.parse(e._body).message, 'Login');
     });
   }
   loginfb() {
@@ -67,12 +70,12 @@ export class LoginPage {
         this.fb.api('me?fields=email,id,first_name,last_name', null).then((res: FacebookLoginResponse) =>
           this.registerFb(res))
           .catch(e => {
-            alert(JSON.parse(e._body).message);
+            this.dialogs.alert(JSON.parse(e._body).message, 'Login');
           })
       )
       // this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
       .catch(e => {
-        alert(JSON.parse(e._body).message);
+        this.dialogs.alert(JSON.parse(e._body).message, 'Login');
       });
   }
 

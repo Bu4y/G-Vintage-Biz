@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { ShopModel } from '@ngcommerce/core';
+import { Dialogs } from "@ionic-native/dialogs";
+
 /**
  * Generated class for the CreateshopPage page.
  *
@@ -17,7 +19,12 @@ export class CreateshopPage {
   item = {} as ShopModel;
   pImages: Array<string> = [];
   resImg: string = '';
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    private dialogs: Dialogs
+  ) {
     if (this.navParams.data) {
       this.item = JSON.parse(JSON.stringify(this.navParams.data));
       this.pImages = this.item.image ? [this.item.image] : [];
@@ -26,9 +33,9 @@ export class CreateshopPage {
   }
   resImageEvent(e) {
     this.resImg = e[0] ? e[0] : "";
-    if(this.resImg){
+    if (this.resImg) {
       this.item.image = this.resImg;
-    }else{
+    } else {
       this.item.image = '';
     }
   }
@@ -38,9 +45,9 @@ export class CreateshopPage {
 
   createShop(data) {
     if (!data.name) {
-      alert('Please Enter Your Name!');
+      this.dialogs.alert('Please Enter Your Name!','Create Shop');
       return;
-    }else if(!data.image || this.pImages.length === 0){
+    } else if (!data.image || this.pImages.length === 0) {
       this.resImg = './assets/image/noimage.png';
     }
     data.image = this.item.image;

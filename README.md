@@ -30,3 +30,6 @@ ionic cordova plugin add cordova-plugin-telerik-imagepicker --variable PHOTO_LIB
 
 npm i @ionic-native/base64 --save
 ionic cordova plugin add com-badrit-base64 --save
+
+npm install --save @ionic-native/dialogs
+ionic cordova plugin add cordova-plugin-dialogs --save

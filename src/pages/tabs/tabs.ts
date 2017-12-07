@@ -7,6 +7,7 @@ import { OrderPage } from '../order/order';
 import { AccountPage } from '../account/account';
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
+import { Dialogs } from "@ionic-native/dialogs";
 
 @IonicPage()
 @Component({
@@ -21,11 +22,16 @@ export class TabsPage {
   tab4Root = NotificationPage;
   tab5Root = AccountPage;
 
-  constructor(public shopService: ShopService, public modalControl: ModalController,public loadingCtrl: LoadingController) {
-    
+  constructor(
+    public shopService: ShopService,
+    public modalControl: ModalController,
+    public loadingCtrl: LoadingController,
+    private dialogs: Dialogs
+  ) {
+
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.getShop();
   }
   getShop() {
@@ -39,7 +45,7 @@ export class TabsPage {
       }
     }, err => {
       // loading.dismiss();
-      alert(JSON.parse(err._body).message);
+      this.dialogs.alert(JSON.parse(err._body).message, 'Tabs');
     });
   }
   createShopModal() {
@@ -53,7 +59,7 @@ export class TabsPage {
             // loading.dismiss();
           }, (err) => {
             // loading.dismiss();
-            alert(JSON.parse(err._body).message);
+            this.dialogs.alert(JSON.parse(err._body).message, 'Tabs');
           });
       }
 

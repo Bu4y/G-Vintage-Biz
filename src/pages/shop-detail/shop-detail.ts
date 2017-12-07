@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { ShopModel, ShopService } from "@ngcommerce/core";
 import { LoadingProvider } from '../../providers/loading/loading';
+import { Dialogs } from "@ionic-native/dialogs";
 
 /**
  * Generated class for the ShopDetailPage page.
@@ -24,7 +25,9 @@ export class ShopDetailPage {
     public shopService: ShopService,
     public modalCtrl: ModalController,
     public loadingCtrl: LoadingProvider,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private dialogs: Dialogs
+
   ) {
   }
 
@@ -76,7 +79,7 @@ export class ShopDetailPage {
       this.navCtrl.pop();
       this.loadingCtrl.dismiss();
     }, (err) => {
-      alert(JSON.parse(err._body).message);
+      this.dialogs.alert(JSON.parse(err._body).message, 'Shop Detail');
       this.loadingCtrl.dismiss();
     });
   }
@@ -94,12 +97,12 @@ export class ShopDetailPage {
             this.loadingCtrl.dismiss();
           }).catch(e => {
             this.loadingCtrl.dismiss();
-            alert(e);
+            this.dialogs.alert(JSON.parse(e._body).message, 'Shop Detail');
           })
           // this.navCtrl.pop();
         }, (err) => {
           this.loadingCtrl.dismiss();
-          alert(JSON.parse(err._body).message);
+          this.dialogs.alert(JSON.parse(err._body).message, 'Shop Detail');
         });
       }
     });

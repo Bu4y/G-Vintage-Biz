@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { CorService, ProductModel, ProductService } from "@ngcommerce/core";
 import { LoadingProvider } from '../../providers/loading/loading';
+import { Dialogs } from "@ionic-native/dialogs";
+
 /**
  * Generated class for the ProductDetailPage page.
  *
@@ -18,7 +20,15 @@ import { LoadingProvider } from '../../providers/loading/loading';
 export class ProductDetailPage {
   items = {} as ProductModel;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productService: ProductService, public loadingCtrl: LoadingProvider, public alertCtrl: AlertController, public modalCtrl: ModalController, ) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public productService: ProductService,
+    public loadingCtrl: LoadingProvider,
+    public alertCtrl: AlertController,
+    public modalCtrl: ModalController,
+    private dialogs: Dialogs
+  ) {
     {
       this.loadingCtrl.onLoading();
       this.productService.getProductByID(this.navParams.data._id).then(data => {
@@ -27,7 +37,7 @@ export class ProductDetailPage {
         this.loadingCtrl.dismiss();
       }).catch(e => {
         this.loadingCtrl.dismiss();
-        alert(e);
+        this.dialogs.alert(JSON.parse(e._body).message, 'Product Detail');
       })
     }
   }
@@ -44,7 +54,7 @@ export class ProductDetailPage {
       this.navCtrl.pop();
       this.loadingCtrl.dismiss();
     }, (err) => {
-      alert(JSON.parse(err._body).message);
+      this.dialogs.alert(JSON.parse(err._body).message, 'Product Detail');
       this.loadingCtrl.dismiss();
     });
   }
@@ -115,12 +125,12 @@ export class ProductDetailPage {
             this.loadingCtrl.dismiss();
           }).catch(e => {
             this.loadingCtrl.dismiss();
-            alert(e);
+            this.dialogs.alert(JSON.parse(e._body).message, 'Product Detail');
           })
           // this.navCtrl.pop();
         }, (err) => {
           this.loadingCtrl.dismiss();
-          alert(JSON.parse(err._body).message);
+          this.dialogs.alert(JSON.parse(err._body).message, 'Product Detail');
         });
       }
     });

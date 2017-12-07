@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OrderService } from "@ngcommerce/core";
 import { LoadingProvider } from '../../providers/loading/loading';
+import { Dialogs } from "@ionic-native/dialogs";
+
 /**
  * Generated class for the OrderDetailPage page.
  *
@@ -17,7 +19,14 @@ import { LoadingProvider } from '../../providers/loading/loading';
 export class OrderDetailPage {
   items;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public orderService: OrderService, public alertCtrl: AlertController, public loadingCtrl: LoadingProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public orderService: OrderService,
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingProvider,
+    private dialogs: Dialogs
+  ) {
     this.loadingCtrl.onLoading();
     this.items = this.navParams.data;
     this.loadingCtrl.dismiss();
@@ -53,7 +62,7 @@ export class OrderDetailPage {
               this.navCtrl.pop();
             }, (err) => {
               this.loadingCtrl.dismiss();
-              alert(JSON.parse(err._body).message);
+              this.dialogs.alert(JSON.parse(err._body).message, 'Order Detail');
             });
           }
         }
@@ -69,11 +78,11 @@ export class OrderDetailPage {
         this.navCtrl.pop();
       }, (err) => {
         this.loadingCtrl.dismiss();
-        alert(JSON.parse(err._body).message);
+        this.dialogs.alert(JSON.parse(err._body).message, 'Order Detail');
       });
     } else if (item.status == "accept") {
       this.loadingCtrl.dismiss();
-      
+
       this.showPrompt(item.order_id, item.item_id);
 
     } else if (item.status == "sent") {
@@ -82,7 +91,7 @@ export class OrderDetailPage {
         this.navCtrl.pop();
       }, (err) => {
         this.loadingCtrl.dismiss();
-        alert(JSON.parse(err._body).message);
+        this.dialogs.alert(JSON.parse(err._body).message, 'Order Detail');
       })
     } else if (item.status == "return") {
 
@@ -93,11 +102,11 @@ export class OrderDetailPage {
   updateStatusReject(item) {
     this.loadingCtrl.onLoading();
     this.orderService.updateItemToReject(item.order_id, item.item_id).then((data) => {
-      this.loadingCtrl.dismiss();     
+      this.loadingCtrl.dismiss();
       this.navCtrl.pop();
     }, (err) => {
-      this.loadingCtrl.dismiss();    
-      alert(JSON.parse(err._body).message);
+      this.loadingCtrl.dismiss();
+      this.dialogs.alert(JSON.parse(err._body).message, 'Order Detail');
     })
 
   }
